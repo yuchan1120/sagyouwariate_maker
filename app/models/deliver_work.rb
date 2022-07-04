@@ -1,0 +1,2 @@
+class DeliverWork < ApplicationRecord
+end
