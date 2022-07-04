@@ -1,0 +1,40 @@
+<header class="site-header">
+  <div class="wrapper site-header__wrapper">
+    <div class="logo">
+      <div>
+        <%= image_tag '金槌とペンチ.jpg', class:'logo_icon' %>
+      </div>
+      <div>
+        <%= image_tag 'logo_text.jpg', class:'logo_text' %>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav__toggle" aria-expanded="false" type="button">
+        menu
+      </button>
+      <ul class="nav__wrapper">
+        <li class="nav__item">
+          <%= link_to "トップ", root_path %>
+        </li>
+        <li class="nav__item">
+          <%= link_to "新規作成", new_table_path %>
+        </li>
+        <li class="nav__item">
+          <%= link_to "作業割当", tables_path %>
+        </li>
+        <li class="nav__item">
+          <a href="">定時業務</a>
+        </li>
+        <li class="nav__item">
+          <a href="">納品業務</a>
+        </li>
+        <li class="nav__item">
+          <a href="">商品管理業務</a>
+        </li>
+        <li class="nav__item">
+          <a href="">清掃業務</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
