@@ -1,0 +1,42 @@
+<div class="centered">
+  <h1>作業割当</h1>
+</div>
+<div class="centered">
+  <h3>
+    タイトル：<%= @table.title %>
+  </h3>
+</div>
+<div class="centered">
+  <table class="sagyouwariate">
+    <thead>
+      <tr>
+        <th>時間</th>
+        <th>定時業務</th>
+        <th>納品業務</th>
+        <th>商品管理業務</th>
+        <th>清掃業務</th>
+      </tr>
+    </thead>
+      <tbody>
+        <% 96.times do |num|%>
+          <tr>
+            <td>
+              <%= render 'tables/row_time', num: num %>
+            </td>
+            <td>
+              <%= @table.send("a#{num + 1}") %>
+            </td>
+            <td>
+              <%= @table.send("b#{num + 1}") %>
+            </td>
+            <td>
+              <%= @table.send("c#{num + 1}") %>
+            </td>
+            <td>
+              <%= @table.send("d#{num + 1}") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
