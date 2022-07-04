@@ -1,0 +1,2 @@
+class ProductManagementWork < ApplicationRecord
+end

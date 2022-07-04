@@ -1,0 +1,2 @@
+class CleaningWork < ApplicationRecord
+end
