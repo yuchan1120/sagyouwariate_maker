@@ -1,0 +1,46 @@
+<%= form_with model: @table do |f| %>
+  <div class="centered">
+    <h1>作業割当</h1>
+  </div>
+  <div class="vertically_aligned_and_centered">
+    <h2>編集</h2>
+    <h3 class="margin_top_0">
+      <%= f.label :name ,"タイトル" %>：<%= f.text_field :title %>　<%= f.submit "保存"%>
+    </h3>
+  </div>
+  </div>
+  <div class="centered">
+    <table class="sagyouwariate">
+      <thead>
+        <tr>
+          <th>時間</th>
+          <th>定時業務</th>
+          <th>納品業務</th>
+          <th>商品管理業務</th>
+          <th>清掃業務</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% 96.times do |num|%>
+            <tr>
+              <td>
+                <%= render 'tables/row_time', num: num %>
+              </td>
+              <td>
+                <%= render 'tables/row_regular_work', num: num, f: f %>
+              </td>
+              <td>
+                <%= render 'tables/row_deliver_work', num: num, f: f %>
+              </td>
+              <td>
+                <%= render 'tables/row_product_management_work', num: num, f: f %>
+              </td>
+              <td>
+                <%= render 'tables/row_cleaning_work', num: num, f: f %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+<% end %>

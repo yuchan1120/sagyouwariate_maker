@@ -1,0 +1,5 @@
+<datalist id="deliver_work">
+  <% deliver_works.each do |deliver_work| %>
+    <option value="<%= deliver_work.name %>　(<%= deliver_work.time_required %>分)">
+  <% end %>
+</datalist>
