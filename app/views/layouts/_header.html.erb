@@ -1,3 +1,11 @@
+<div class="rightside">
+  <% if user_signed_in? %>
+  <%= link_to "#{current_user.email}", destroy_user_session_path, method: :delete, class: "immutable_color_link" %>
+  <% else %>
+    <%= link_to "ログイン", new_user_session_path, class:'sign_in_link' %>
+    <%= link_to "アカウント登録", new_user_registration_path, class:'sign_in_link' %>
+  <% end %>
+</div>
 <header class="site-header">
   <div class="wrapper site-header__wrapper">
     <div class="logo">
@@ -8,33 +16,36 @@
         <%= image_tag 'logo_text.jpg', class:'logo_text' %>
       </div>
     </div>
-    <nav class="nav">
-      <button class="nav__toggle" aria-expanded="false" type="button">
-        menu
-      </button>
-      <ul class="nav__wrapper">
-        <li class="nav__item">
-          <%= link_to "トップ", root_path %>
-        </li>
-        <li class="nav__item">
-          <%= link_to "新規作成", new_table_path %>
-        </li>
-        <li class="nav__item">
-          <%= link_to "作業割当", tables_path %>
-        </li>
-        <li class="nav__item">
-          <a href="">定時業務</a>
-        </li>
-        <li class="nav__item">
-          <a href="">納品業務</a>
-        </li>
-        <li class="nav__item">
-          <a href="">商品管理業務</a>
-        </li>
-        <li class="nav__item">
-          <a href="">清掃業務</a>
-        </li>
-      </ul>
-    </nav>
+    <% if user_signed_in? %>
+      <nav class="nav">
+        <button class="nav__toggle" aria-expanded="false" type="button">
+          menu
+        </button>
+        <ul class="nav__wrapper">
+          <li class="nav__item">
+            <%= link_to "トップ", root_path %>
+          </li>
+          <li class="nav__item">
+            <%= link_to "新規作成", new_table_path %>
+          </li>
+          <li class="nav__item">
+            <%= link_to "作業割当", tables_path %>
+          </li>
+          <li class="nav__item">
+            <a href="">定時業務</a>
+          </li>
+          <li class="nav__item">
+            <a href="">納品業務</a>
+          </li>
+          <li class="nav__item">
+            <a href="">商品管理業務</a>
+          </li>
+          <li class="nav__item">
+            <a href="">清掃業務</a>
+          </li>
+        </ul>
+      </nav>
+    <% end %>
+    <%= render 'layouts/flash_message' %>
   </div>
 </header>
