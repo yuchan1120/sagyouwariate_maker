@@ -1,3 +1,11 @@
+<div class="rightside">
+  <% if user_signed_in? %>
+  <%= link_to "#{current_user.email}", destroy_user_session_path, method: :delete, class: "immutable_color_link" %>
+  <% else %>
+    <%= link_to "ログイン", new_user_session_path, class:'sign_in_link' %>
+    <%= link_to "アカウント登録", new_user_registration_path, class:'sign_in_link' %>
+  <% end %>
+</div>
 <header class="site-header">
   <div class="wrapper site-header__wrapper">
     <div class="logo">
