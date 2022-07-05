@@ -4,10 +4,10 @@ class TablesController < ApplicationController
   end
 
   def new
-    @regular_works = RegularWork.all
-    @deliver_works = DeliverWork.all
-    @product_management_works = ProductManagementWork.all
-    @cleaning_works = CleaningWork.all
+    @regular_works = RegularWork.where("user_id::text LIKE?", "#{current_user.id}")
+    @deliver_works = DeliverWork.where("user_id::text LIKE?", "#{current_user.id}")
+    @product_management_works = ProductManagementWork.where("user_id::text LIKE?", "#{current_user.id}")
+    @cleaning_works = CleaningWork.where("user_id::text LIKE?", "#{current_user.id}")
     @table = Table.new
   end
 
