@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>id</th>
+        <th>カテゴリ</th>
         <th>業務</th>
         <th>所要時間（分）</th>
         <th>編集</th>
@@ -16,6 +17,7 @@
       <% @works.each do |work| %>
         <tr>
           <td><%= work.id %></td>
+          <td><%= work.taxon.name %></td>
           <td><%= work.name %></td>
           <td><%= work.time_required %></td>
           <td>
