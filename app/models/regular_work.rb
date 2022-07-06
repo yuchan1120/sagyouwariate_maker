@@ -1,2 +1,0 @@
-class RegularWork < ApplicationRecord
-end
