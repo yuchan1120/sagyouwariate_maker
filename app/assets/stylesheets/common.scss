@@ -223,3 +223,52 @@ table td {
   flex-wrap: wrap;
   margin-top: 1em;
 }
+
+.page_header{
+  display: flex;
+  justify-content: center;
+  background-color: #e0f0eb;
+  margin-bottom: 50px;
+}
+
+.page_title{
+  color: #4ca58c;
+  margin-left: 2em;
+}
+
+#left {
+  color:#676767;
+  font-size:13px;
+  width:250px;
+  float:left;
+  margin-left: 5%;
+}
+
+.left-title {
+  margin:0 15px 0 20px;
+  padding:7px 20px;
+  font-size: 25px;
+  font-weight:bold;
+  background-color:#E3E3E3;
+  color:#333;
+  border-top: 1px solid #c7c7c7;
+  border-right: 1px solid #c7c7c7;
+  border-left: 1px solid #c7c7c7;
+}
+
+.link {
+  margin:0 15px 7px 20px;
+  padding:7px 8px 7px 13px;
+  font-size: 20px;
+  line-height:170%;
+  border: 1px solid #c7c7c7;
+}
+
+.link a{
+color:#094a94;
+text-decoration:none;
+}
+
+.link a:hover{
+text-decoration:underline;
+}

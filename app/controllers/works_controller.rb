@@ -2,6 +2,7 @@ class WorksController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @all_taxons = Taxon.all
     @works = Work.where("user_id::text LIKE?", "#{current_user.id}")
   end
 
