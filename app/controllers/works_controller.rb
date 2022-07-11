@@ -33,6 +33,13 @@ class WorksController < ApplicationController
     end
   end
 
+  def destroy
+    @work = Work.find(params[:id])
+    @work.destroy
+    flash[:notice] = "業務を削除しました"
+    redirect_to :works
+  end
+
   def work_params
     params.require(:work).permit(:name, :time_required, :user_id, :taxon_id)
   end
