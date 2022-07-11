@@ -6,9 +6,9 @@
     <thead>
       <tr>
         <th>id</th>
-        <th>カテゴリ</th>
         <th>業務</th>
         <th>所要時間（分）</th>
+        <th>カテゴリ</th>
         <th>編集</th>
         <th>削除</th>
       </tr>
@@ -17,9 +17,9 @@
       <% @works.each do |work| %>
         <tr>
           <td><%= work.id %></td>
-          <td><%= work.taxon.name %></td>
           <td><%= work.name %></td>
           <td><%= work.time_required %></td>
+          <td><%= work.taxon.name %></td>
           <td>
             <%= link_to "編集", [:edit, work], class: "immutable_color_link" %>
           </td>
