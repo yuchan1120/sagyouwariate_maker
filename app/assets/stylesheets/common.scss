@@ -17,7 +17,6 @@
 .site-header {
   position: relative;
   background-color: #54c3b4;
-  margin-bottom: 50px;
 }
 
 .nav__item{
@@ -224,7 +223,14 @@ table td {
   margin-top: 1em;
 }
 
-.page_header{
+.page_header_margin_bottom_20px{
+  display: flex;
+  justify-content: center;
+  background-color: #e0f0eb;
+  margin-bottom: 20px;
+}
+
+.page_header_margin_bottom_50px{
   display: flex;
   justify-content: center;
   background-color: #e0f0eb;
@@ -233,7 +239,6 @@ table td {
 
 .page_title{
   color: #4ca58c;
-  margin-left: 2em;
 }
 
 #left {
