@@ -1,0 +1,27 @@
+<div class="centered">
+  <h1>業務</h1>
+</div>
+<div class="centered">
+  <h2>新規登録</h2>
+</div>
+<%= form_with model: @work do |f| %>
+  <div class="centered">
+    <table>
+      <tr>
+        <th><%= f.label :name ,"業務" %></th>
+        <th><%= f.label :time_required ,"所要時間（分）" %></th>
+        <th><%= f.label :taxon_id ,"カテゴリ" %></th>
+      </tr>
+      <tr>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.number_field :time_required %></td>
+        <td><%= f.select :taxon_id, [['定時業務', 1], ['納品業務', 2], ['商品管理業務', 3], ['清掃業務', 4]], include_blank: true, selected: 1 %></td>
+      </tr>
+    </table>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="table_bottom">
+    <%= f.submit "登録"%>
+    　<%= link_to "一覧に戻る", :works, class: "immutable_color_link" %>
+  </div>
+<% end %>
