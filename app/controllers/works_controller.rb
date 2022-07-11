@@ -19,6 +19,20 @@ class WorksController < ApplicationController
     end
   end
 
+  def edit
+    @work = Work.find(params[:id])
+  end
+
+  def update
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      flash[:notice] = "IDが「#{@work.id}」の定時業務を更新しました"
+      redirect_to :works
+    else
+      render "edit"
+    end
+  end
+
   def work_params
     params.require(:work).permit(:name, :time_required, :user_id, :taxon_id)
   end
