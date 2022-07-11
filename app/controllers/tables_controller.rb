@@ -1,15 +1,15 @@
 class TablesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @tables = Table.where("user_id::text LIKE?", "#{current_user.id}")
   end
 
   def new
-    @regular_works = RegularWork.where("user_id::text LIKE?", "#{current_user.id}")
-    @deliver_works = DeliverWork.where("user_id::text LIKE?", "#{current_user.id}")
-    @product_management_works = ProductManagementWork.where("user_id::text LIKE?", "#{current_user.id}")
-    @cleaning_works = CleaningWork.where("user_id::text LIKE?", "#{current_user.id}")
+    @regular_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "1"])
+    @deliver_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "2"])
+    @product_management_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "3"])
+    @cleaning_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "4"])
     @table = Table.new
   end
 
@@ -28,10 +28,10 @@ class TablesController < ApplicationController
   end
 
   def edit
-    @regular_works = RegularWork.all
-    @deliver_works = DeliverWork.all
-    @product_management_works = ProductManagementWork.all
-    @cleaning_works = CleaningWork.all
+    @regular_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "1"])
+    @deliver_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "2"])
+    @product_management_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "3"])
+    @cleaning_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "4"])
     @table = Table.find(params[:id])
   end
 

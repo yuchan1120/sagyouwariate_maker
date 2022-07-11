@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   }
   root 'top#index'
   resources :tables
+  resources :works
+  resources :taxons, only: [:show]
 end

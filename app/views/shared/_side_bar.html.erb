@@ -1,0 +1,19 @@
+<div id="left">
+  <div class="left-title">カテゴリ</div>
+  <div class="link">
+    <ul>
+      <li>
+        <%= link_to works_path do %>
+          全業務
+        <% end %>
+      </li>
+      <% taxons.each do |taxon| %>
+        <li>
+          <%= link_to taxon_path(taxon.id) do %>
+            <%= taxon.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
