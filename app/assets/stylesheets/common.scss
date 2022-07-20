@@ -279,5 +279,10 @@ text-decoration:underline;
 }
 
 .validation_error_message{
-  width: 20%;
+  margin: 8px;
+  color: red;
+}
+
+.validation_error_message_area{
+  margin-bottom: 20px;
 }
