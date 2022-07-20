@@ -277,3 +277,12 @@ text-decoration:none;
 .link a:hover{
 text-decoration:underline;
 }
+
+.validation_error_message{
+  margin: 8px;
+  color: red;
+}
+
+.validation_error_message_area{
+  margin-bottom: 20px;
+}
