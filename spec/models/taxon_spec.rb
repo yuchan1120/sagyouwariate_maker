@@ -9,6 +9,6 @@ RSpec.describe Taxon, type: :model do
   it "is invalid without a name" do
     taxon = Taxon.new(name: nil)
     taxon.valid?
-    expect(taxon.errors[:name]).to include("を入力してください")
+    expect(taxon.errors).to be_of_kind(:name, :blank)
   end
 end
