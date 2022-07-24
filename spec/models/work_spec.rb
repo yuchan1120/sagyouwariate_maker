@@ -10,7 +10,7 @@ RSpec.describe Work, type: :model do
     )
   end
 
-  it "is valid with a name, time_required, user, and taxon_id" do
+  it "is valid with a name, time_required, user, and taxon" do
     work = Work.new(
       name: "新しい業務",
       time_required: "10",
