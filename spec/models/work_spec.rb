@@ -2,17 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Work, type: :model do
   before do
+    @user = FactoryBot.create(:user)
+
     @taxon = Taxon.create(
       id: "1",
       name:  "定時業務",
     )
   end
-  
-  it "is valid with a name, time_required, user_id, and taxon_id" do
+
+  it "is valid with a name, time_required, user, and taxon_id" do
     work = Work.new(
       name: "新しい業務",
       time_required: "10",
-      user_id: "1",
+      user: @user,
       taxon: @taxon,
     )
     expect(work).to be_valid
