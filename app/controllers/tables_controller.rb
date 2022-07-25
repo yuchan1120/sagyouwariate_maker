@@ -14,6 +14,10 @@ class TablesController < ApplicationController
   end
 
   def create
+    @regular_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "1"])
+    @deliver_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "2"])
+    @product_management_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "3"])
+    @cleaning_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "4"])
     @table = Table.new(table_params)
     if @table.save
       flash[:notice] = "作業割当を新規登録しました"
