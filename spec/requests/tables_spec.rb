@@ -14,7 +14,7 @@ RSpec.describe "Tables", type: :request do
         expect(response).to have_http_status(200)
       end
     end
-    
+
     context "as a guest" do
       it "returns a 302 response" do
         get tables_path
@@ -25,6 +25,25 @@ RSpec.describe "Tables", type: :request do
         get tables_path
         expect(response).to redirect_to "/users/sign_in"
       end
+    end
+  end
+
+  describe "#show" do
+    context "as an authorized user" do
+      before do
+        @user = FactoryBot.create(:user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "responds successfully" do
+        sign_in @user
+        get tables_path(:id), params: { id: @table.id }
+        expect(response).to be_successful
+      end
+    end
+
+    context "as an unauthorized user" do
+      #追加予定
     end
   end
 end
