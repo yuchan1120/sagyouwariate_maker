@@ -54,7 +54,7 @@ RSpec.describe "Tables", type: :request do
       end
 
       it "adds a table" do
-        table_params = FactoryBot.attributes_for(:table, user_id: @user.id)
+        table_params = FactoryBot.attributes_for(:table)
         sign_in @user
         expect {
           post tables_path, params: { table: table_params }
