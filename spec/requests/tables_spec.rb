@@ -111,4 +111,39 @@ RSpec.describe "Tables", type: :request do
       end
     end
   end
+
+  describe"#destroy"do
+    context "as an authorized user" do
+      before do
+        @user = FactoryBot.create(:user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "deletes a table" do
+        sign_in @user
+        expect {delete table_path(@table.id)}.to change(@user.tables, :count).by(-1)
+      end
+    end
+
+    context "as a guest" do
+      before do
+        @user = FactoryBot.create(:user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "returns a 302 response" do
+        delete table_path(@table.id)
+        expect(response).to have_http_status "302"
+      end
+
+      it "redirects to the sign-in page" do
+        delete table_path(@table.id)
+        expect(response).to redirect_to "/users/sign_in"
+      end
+
+      it "does not delete the table" do
+        expect {delete table_path(@table.id)}.to_not change(Table, :count)
+      end
+    end
+  end
 end
