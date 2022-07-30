@@ -1,5 +1,6 @@
 class TablesController < ApplicationController
   before_action :authenticate_user!
+  before_action :table_owner?, except: [:index, :new, :create]
 
   def index
     @tables = Table.where("user_id::text LIKE?", "#{current_user.id}")
@@ -27,20 +28,14 @@ class TablesController < ApplicationController
     end
   end
 
-  def show
-    @table = Table.find(params[:id])
-  end
-
   def edit
     @regular_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "1"])
     @deliver_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "2"])
     @product_management_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "3"])
     @cleaning_works = Work.where(["user_id::text LIKE? AND taxon_id::text LIKE?", "#{current_user.id}", "4"])
-    @table = Table.find(params[:id])
   end
 
   def update
-    @table = Table.find(params[:id])
     if @table.update(table_params)
       flash[:notice] = "IDが「#{@table.id}」の作業割当を更新しました"
       redirect_to :tables
@@ -50,10 +45,16 @@ class TablesController < ApplicationController
   end
 
   def destroy
-    @table = Table.find(params[:id])
     @table.destroy
     flash[:notice] = "作業割当を削除しました"
     redirect_to :tables
+  end
+
+  def table_owner?
+    @table = Table.find(params[:id])
+    unless @table.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def table_params
