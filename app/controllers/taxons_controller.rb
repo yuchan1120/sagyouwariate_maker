@@ -1,4 +1,6 @@
 class TaxonsController < ApplicationController
+  before_action :authenticate_user!
+  
   def show
     @taxon = Taxon.find(params[:id])
     @all_taxons = Taxon.all
