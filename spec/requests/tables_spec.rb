@@ -63,6 +63,13 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as a guest" do
+      it "does not adds a table" do
+        table_params = FactoryBot.attributes_for(:table)
+        expect {
+          post tables_path, params: { table: table_params }
+        }.to_not change(Table, :count)
+      end
+
       it "returns a 302 response" do
         table_params = FactoryBot.attributes_for(:table)
         post tables_path, params: { table: table_params }
