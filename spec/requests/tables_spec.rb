@@ -43,7 +43,17 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as an unauthorized user" do
-      #追加予定
+      before do
+        @user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:another_user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "redirects the page to root_path" do
+        sign_in @another_user
+        get table_path(@table.id)
+        expect(response).to redirect_to root_path
+      end
     end
   end
 
@@ -118,6 +128,20 @@ RSpec.describe "Tables", type: :request do
       end
     end
 
+    context "as an unauthorized user" do
+      before do
+        @user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:another_user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "redirects the page to root_path" do
+        sign_in @another_user
+        get edit_table_path(@table.id)
+        expect(response).to redirect_to root_path
+      end
+    end
+
     context "as a guest" do
       before do
         @user = FactoryBot.create(:user)
@@ -151,6 +175,28 @@ RSpec.describe "Tables", type: :request do
       end
     end
 
+    context "as an unauthorized user" do
+      before do
+        @user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:another_user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "does not update the table" do
+        table_params = FactoryBot.attributes_for(:table, title: "New Table Name")
+        sign_in @another_user
+        patch table_path(@table.id), params: { table: table_params }
+        expect(@table.reload.title).to eq "新しい作業割当"
+      end
+
+      it "redirects the page to root_path" do
+        table_params = FactoryBot.attributes_for(:table, title: "New Table Name")
+        sign_in @another_user
+        patch table_path(@table.id), params: { table: table_params }
+        expect(response).to redirect_to root_path
+      end
+    end
+
     context "as a guest" do
       before do
         @user = FactoryBot.create(:user)
@@ -181,6 +227,25 @@ RSpec.describe "Tables", type: :request do
       it "deletes a table" do
         sign_in @user
         expect {delete table_path(@table.id)}.to change(@user.tables, :count).by(-1)
+      end
+    end
+
+    context "as an unauthorized user" do
+      before do
+        @user = FactoryBot.create(:user)
+        @another_user = FactoryBot.create(:another_user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "does not delete the project" do
+        sign_in @another_user
+        expect {delete table_path(@table.id)}.to_not change(Table, :count)
+      end
+
+      it "redirects the page to root_path" do
+        sign_in @another_user
+        delete table_path(@table.id)
+        expect(response).to redirect_to root_path
       end
     end
 
