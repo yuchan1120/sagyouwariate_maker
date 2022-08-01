@@ -88,7 +88,7 @@ RSpec.describe "Tables", type: :request do
     context "as an authorized user" do
       it "responds successfully" do
         sign_in @user
-        get tables_path(:id), params: { id: @table.id }
+        get table_path(@table.id)
         expect(response).to be_successful
       end
     end
