@@ -13,7 +13,6 @@ RSpec.describe "Tables", type: :request do
         sign_in @user
         get tables_path
         expect(response).to be_successful
-        expect(response).to have_http_status(200)
       end
     end
 
