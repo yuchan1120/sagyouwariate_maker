@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Tables", type: :request do
+  before do
+    @user = FactoryBot.create(:user)
+    @another_user = FactoryBot.create(:another_user)
+    @table = FactoryBot.create(:table, user: @user)
+  end
+
   describe "#index" do
     context "as an authenticated user" do
-      before do
-        @user = FactoryBot.create(:user)
-      end
-
       it "responds successfully" do
         sign_in @user
         get tables_path
@@ -30,11 +32,6 @@ RSpec.describe "Tables", type: :request do
 
   describe "#show" do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "responds successfully" do
         sign_in @user
         get tables_path(:id), params: { id: @table.id }
@@ -43,12 +40,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as an unauthorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @another_user = FactoryBot.create(:another_user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "redirects the page to root_path" do
         sign_in @another_user
         get table_path(@table.id)
@@ -57,11 +48,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as a guest" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "returns a 302 response" do
         get table_path(@table.id)
         expect(response).to have_http_status "302"
@@ -76,11 +62,6 @@ RSpec.describe "Tables", type: :request do
 
   describe "#new" do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "responds successfully" do
         sign_in @user
         get new_table_path
@@ -103,10 +84,6 @@ RSpec.describe "Tables", type: :request do
 
   describe"#create"do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-      end
-
       it "adds a table" do
         table_params = FactoryBot.attributes_for(:table)
         sign_in @user
@@ -133,11 +110,6 @@ RSpec.describe "Tables", type: :request do
 
   describe "#edit" do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "responds successfully" do
         sign_in @user
         get edit_table_path(@table.id)
@@ -146,12 +118,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as an unauthorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @another_user = FactoryBot.create(:another_user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "redirects the page to root_path" do
         sign_in @another_user
         get edit_table_path(@table.id)
@@ -160,11 +126,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as a guest" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "returns a 302 response" do
         get edit_table_path(@table.id)
         expect(response).to have_http_status "302"
@@ -179,11 +140,6 @@ RSpec.describe "Tables", type: :request do
 
   describe"#update"do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "updates a table" do
         table_params = FactoryBot.attributes_for(:table, title: "New Table Name")
         sign_in @user
@@ -193,12 +149,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as an unauthorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @another_user = FactoryBot.create(:another_user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "does not update the table" do
         table_params = FactoryBot.attributes_for(:table, title: "New Table Name")
         sign_in @another_user
@@ -215,11 +165,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as a guest" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "returns a 302 response" do
         table_params = FactoryBot.attributes_for(:table)
         patch table_path(@table.id), params: { table: table_params }
@@ -236,11 +181,6 @@ RSpec.describe "Tables", type: :request do
 
   describe"#destroy"do
     context "as an authorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "deletes a table" do
         sign_in @user
         expect {delete table_path(@table.id)}.to change(@user.tables, :count).by(-1)
@@ -248,12 +188,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as an unauthorized user" do
-      before do
-        @user = FactoryBot.create(:user)
-        @another_user = FactoryBot.create(:another_user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "does not delete the project" do
         sign_in @another_user
         expect {delete table_path(@table.id)}.to_not change(Table, :count)
@@ -267,11 +201,6 @@ RSpec.describe "Tables", type: :request do
     end
 
     context "as a guest" do
-      before do
-        @user = FactoryBot.create(:user)
-        @table = FactoryBot.create(:table, user: @user)
-      end
-
       it "returns a 302 response" do
         delete table_path(@table.id)
         expect(response).to have_http_status "302"
