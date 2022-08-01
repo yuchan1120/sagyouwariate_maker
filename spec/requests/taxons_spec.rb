@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe "Taxons", type: :request do
   before do
     @user = FactoryBot.create(:user)
-
-    @taxon = Taxon.create(
-      id: "1",
-      name:  "定時業務",
-    )
+    @taxon = FactoryBot.create(:taxon)
   end
 
   describe "#show" do
