@@ -55,6 +55,23 @@ RSpec.describe "Tables", type: :request do
         expect(response).to redirect_to root_path
       end
     end
+
+    context "as a guest" do
+      before do
+        @user = FactoryBot.create(:user)
+        @table = FactoryBot.create(:table, user: @user)
+      end
+
+      it "returns a 302 response" do
+        get table_path(@table.id)
+        expect(response).to have_http_status "302"
+      end
+
+      it "redirects to the sign-in page" do
+        get table_path(@table.id)
+        expect(response).to redirect_to "/users/sign_in"
+      end
+    end
   end
 
   describe "#new" do
