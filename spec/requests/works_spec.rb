@@ -54,12 +54,24 @@ RSpec.describe "Works", type: :request do
 
   describe"#create"do
     context "as an authorized user" do
-      it "adds a work" do
-        work_params = FactoryBot.attributes_for(:work, taxon_id: @taxon.id)
-        sign_in @user
-        expect {
-          post works_path, params: { work: work_params }
-        }.to change(@user.works, :count).by(1)
+      context "with valid attributes" do
+        it "adds a work" do
+          work_params = FactoryBot.attributes_for(:work, taxon_id: @taxon.id)
+          sign_in @user
+          expect {
+            post works_path, params: { work: work_params }
+          }.to change(@user.works, :count).by(1)
+        end
+      end
+
+      context "with invalid attributes" do
+        it "does not add a work" do
+          work_params = FactoryBot.attributes_for(:work, :invalid, taxon_id: @taxon.id)
+          sign_in @user
+          expect {
+            post works_path, params: { work: work_params }
+          }.to_not change(@user.works, :count)
+        end
       end
     end
 
