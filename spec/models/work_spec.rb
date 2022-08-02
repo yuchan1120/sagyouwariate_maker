@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe Work, type: :model do
   before do
     @user = FactoryBot.create(:user)
-
-    @taxon = Taxon.create(
-      id: "1",
-      name:  "定時業務",
-    )
+    @taxon = FactoryBot.create(:taxon)
   end
 
   it "is valid with a name, time_required, user, and taxon" do

@@ -1,5 +1,6 @@
 class WorksController < ApplicationController
   before_action :authenticate_user!
+  before_action :work_owner?, except: [:index, :new, :create]
 
   def index
     @all_taxons = Taxon.all
@@ -11,7 +12,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(work_params)
+    @work = current_user.works.new(work_params)
     if @work.save
       flash[:notice] = "業務を新規登録しました"
       redirect_to :works
@@ -20,12 +21,7 @@ class WorksController < ApplicationController
     end
   end
 
-  def edit
-    @work = Work.find(params[:id])
-  end
-
   def update
-    @work = Work.find(params[:id])
     if @work.update(work_params)
       flash[:notice] = "IDが「#{@work.id}」の定時業務を更新しました"
       redirect_to :works
@@ -35,13 +31,20 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    @work = Work.find(params[:id])
     @work.destroy
     flash[:notice] = "業務を削除しました"
     redirect_to :works
   end
 
-  def work_params
-    params.require(:work).permit(:name, :time_required, :user_id, :taxon_id)
-  end
+  private
+    def work_owner?
+      @work = Work.find(params[:id])
+      unless @work.user_id == current_user.id
+        redirect_to root_path
+      end
+    end
+
+    def work_params
+      params.require(:work).permit(:name, :time_required, :taxon_id)
+    end
 end
