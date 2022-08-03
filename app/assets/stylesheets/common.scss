@@ -1,3 +1,18 @@
+.first_view {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #54c3b4;
+  height: 400px;
+}
+
+.subtitle{
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
 .logo{
   padding-top: 10px;
   display: flex;
@@ -10,8 +25,16 @@
   height: 40px;
 }
 
+.logo_icon_large{
+  height: 80px;
+}
+
 .logo_text {
   height: 50px;
+}
+
+.logo_text_large {
+  height: 100px;
 }
 
 .site-header {

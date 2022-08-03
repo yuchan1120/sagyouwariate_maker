@@ -1,0 +1,25 @@
+<div class="rightside">
+  <% if user_signed_in? %>
+  <%= link_to "#{current_user.email}", destroy_user_session_path, method: :delete, class: "immutable_color_link" %>
+  <% else %>
+    <%= link_to "ログイン", new_user_session_path, class:'sign_in_link' %>
+    <%= link_to "アカウント登録", new_user_registration_path, class:'sign_in_link' %>
+  <% end %>
+</div>
+<div class="first_view">
+  <div class="logo">
+    <div>
+      <%= image_tag '金槌とペンチ.jpg', class:'logo_icon_large' %>
+    </div>
+    <div>
+      <%= image_tag 'logo_text.jpg', class:'logo_text_large' %>
+    </div>
+  </div>
+  <div class="subtitle">
+    作業割当を簡単に作成できる便利ツール
+  </div>
+  <div class="subtitle">
+    あなたの店舗運営をサポートします。
+  </div>
+</div>
+<%= render 'layouts/flash_message' %>
