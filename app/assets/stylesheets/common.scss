@@ -141,6 +141,23 @@
   opacity: 0.7;
   }
 
+.printing_link{
+  color: #4ca58c;
+  text-decoration: none;
+  border: solid;
+  border-color: #4ca58c;
+  border-radius: 8px;
+  padding: 0.5em;
+  cursor: pointer;
+  @media print {
+    visibility: hidden;
+  }
+}
+
+.printing_link:hover {
+  opacity: 0.7;
+  }
+
 @media (max-width: 809px) {
   .rightside{
     top: 90px;
