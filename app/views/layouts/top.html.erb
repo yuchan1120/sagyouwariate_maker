@@ -12,6 +12,9 @@
   <body>
     <% if user_signed_in? %>
       <%= render 'layouts/header' %>
+      <div class="page_header_margin_bottom_50px">
+        <h1 class="page_title">トップ</h1>
+      </div>
     <% else %>
       <%= render 'layouts/no_header' %>
     <% end %>
