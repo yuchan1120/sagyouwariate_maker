@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SagyouwariateMaker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <%= render 'layouts/header' %>
+      <div class="page_header_margin_bottom_50px">
+        <h1 class="page_title">トップ</h1>
+      </div>
+    <% else %>
+      <%= render 'layouts/no_header' %>
+    <% end %>
+    <%= yield %>
+    <footer class="footer">
+      <p>©️2022 miura</p>
+    </footer>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>
