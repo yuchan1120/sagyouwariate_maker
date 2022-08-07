@@ -45,6 +45,15 @@ class TablesController < ApplicationController
     end
   end
 
+  def clone
+    @old_table = Table.find(params[:id])
+    @table = @old_table.dup
+    @table.save
+    @table.update(title: "#{@table.title}(コピー)")
+    flash[:notice] = "IDが「#{@old_table.id}」の作業割当を複製しました"
+    redirect_to :tables
+  end
+
   def destroy
     @table.destroy
     flash[:notice] = "作業割当を削除しました"
