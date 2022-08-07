@@ -1,10 +1,9 @@
-<div class="page_header_margin_bottom_20px">
-  <h1 class="page_title">作業割当</h1>
+<div class="rightside">
+  <%= link_to "戻る", tables_path, class:'printing_link' %>
+  <a class="printing_link" onclick="window.print();">印刷</a>
 </div>
-<div class="centered">
-  <h3>
-    タイトル：<%= @table.title %>
-  </h3>
+<div class="page_header_margin_bottom_20px">
+  <h1 class="page_title"><%= @table.title %></h1>
 </div>
 <div class="centered">
   <table class="sagyouwariate">

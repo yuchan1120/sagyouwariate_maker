@@ -1,4 +1,5 @@
 class TablesController < ApplicationController
+  layout 'tables_show', only: :show
   before_action :authenticate_user!
   before_action :table_owner?, except: [:index, :new, :create]
 
