@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :works
   resources :taxons, only: [:show]
   get 'search_table' => 'tables#search'
+  get 'search_work' => 'works#search'
 end
