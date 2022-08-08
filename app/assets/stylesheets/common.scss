@@ -158,6 +158,27 @@
   opacity: 0.7;
   }
 
+.sample_data_link_area{
+  z-index: 1;
+  position: absolute;
+  right: 20%;
+  margin-top: 1em;
+}
+
+.sample_data_link{
+  color: #4ca58c;
+  text-decoration: none;
+  border: solid;
+  border-color: #4ca58c;
+  border-radius: 8px;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.sample_data_link:hover {
+  opacity: 0.7;
+}
+
 @media (max-width: 809px) {
   .rightside{
     top: 90px;
