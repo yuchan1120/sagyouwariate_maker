@@ -73,6 +73,17 @@ class TablesController < ApplicationController
     redirect_to :tables
   end
 
+  def search
+    if params[:keyword].present?
+      @tables = Table.where(["user_id::text like? AND title like?", "#{current_user.id}", "%#{params[:keyword]}%"])
+      flash[:search_results] = "検索結果：#{@tables.count}件"
+    else
+      @tables = Table.where("user_id::text LIKE?", "#{current_user.id}")
+      flash[:search_results] = nil
+    end
+    render "index"
+  end
+
   private
     def table_owner?
       @table = Table.find(params[:id])
