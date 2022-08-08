@@ -356,14 +356,6 @@ table td {
   color: #4ca58c;
 }
 
-#left {
-  color:#676767;
-  font-size:13px;
-  width:250px;
-  float:left;
-  margin-left: 5%;
-}
-
 .left-title {
   margin:0 15px 0 20px;
   padding:7px 20px;
@@ -382,6 +374,10 @@ table td {
   font-size: 20px;
   line-height:170%;
   border: 1px solid #c7c7c7;
+}
+
+.link ul{
+  text-align: left;
 }
 
 .link a{

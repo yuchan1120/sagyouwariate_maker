@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :authenticate_user!
-  before_action :work_owner?, except: [:index, :new, :create]
+  before_action :work_owner?, only: [:show, :edit, :update, :destroy]
 
   def index
     @all_taxons = Taxon.all
@@ -34,6 +34,19 @@ class WorksController < ApplicationController
     @work.destroy
     flash[:notice] = "業務を削除しました"
     redirect_to :works
+  end
+
+  def search
+    if params[:keyword].present?
+      @all_taxons = Taxon.all
+      @works = Work.where(["user_id::text like? AND name like?", "#{current_user.id}", "%#{params[:keyword]}%"])
+      flash[:search_results] = "検索結果：#{@works.count}件"
+    else
+      @all_taxons = Taxon.all
+      @works = Work.where("user_id::text LIKE?", "#{current_user.id}")
+      flash[:search_results] = nil
+    end
+    render "index"
   end
 
   private
