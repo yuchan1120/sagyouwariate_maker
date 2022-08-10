@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Tables", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   scenario "user creates a new table" do
     user = FactoryBot.create(:user)
     sign_in_as user
