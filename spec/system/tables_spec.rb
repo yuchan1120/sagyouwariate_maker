@@ -7,12 +7,7 @@ RSpec.describe "Tables", type: :system do
 
   scenario "user creates a new table" do
     user = FactoryBot.create(:user)
-
-    visit root_path
-    find('#upper_right_login').click
-    fill_in "user[email]", with: user.email
-    fill_in "user[password]", with: user.password
-    find('#commit_login').click
+    sign_in_as user
 
     expect {
       find('#header_menu_create_new').click
