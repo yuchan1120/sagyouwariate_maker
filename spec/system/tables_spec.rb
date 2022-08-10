@@ -19,7 +19,7 @@ RSpec.describe "Tables", type: :system do
     }.to change(@user.tables, :count).by(1)
   end
 
-  scenario "user reads a new table" do
+  scenario "user reads a table" do
     sign_in_as @user
 
     find('#header_menu_table_index').click
