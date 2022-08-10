@@ -14,4 +14,16 @@ RSpec.describe "Tables", type: :system do
       expect(page).to have_content "Test"
     }.to change(user.tables, :count).by(1)
   end
+
+  scenario "user reads a new table" do
+    user = FactoryBot.create(:user)
+    table = FactoryBot.create(:table, user: user)
+
+    sign_in_as user
+
+    find('#header_menu_table_index').click
+    find("#show_link_#{table.id}").click
+
+    expect(current_path).to eq table_path(table.id)
+  end
 end
