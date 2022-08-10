@@ -27,4 +27,16 @@ RSpec.describe "Tables", type: :system do
 
     expect(current_path).to eq table_path(@table.id)
   end
+
+  scenario "user updates a table" do
+    sign_in_as @user
+
+    find('#header_menu_table_index').click
+    find("#edit_link_#{@table.id}").click
+    fill_in "table[title]", with: "New Table Name"
+    find('#commit_save').click
+
+    expect(page).to have_content "IDが「#{@table.id}」の作業割当を更新しました"
+    expect(page).to have_content "New Table Name"
+  end
 end

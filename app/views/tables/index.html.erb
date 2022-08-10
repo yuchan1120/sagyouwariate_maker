@@ -38,7 +38,7 @@
             <%= link_to "詳細", table, class: "immutable_color_link", id: "show_link_#{table.id}" %>
           </td>
           <td>
-            <%= link_to "編集", [:edit, table], class: "immutable_color_link" %>
+            <%= link_to "編集", [:edit, table], class: "immutable_color_link", id: "edit_link_#{table.id}" %>
           </td>
           <td>
             <%= link_to "複製", [:clone, table], class: "immutable_color_link" %>
