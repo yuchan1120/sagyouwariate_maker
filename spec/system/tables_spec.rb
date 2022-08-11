@@ -39,4 +39,16 @@ RSpec.describe "Tables", type: :system do
     expect(page).to have_content "IDが「#{@table.id}」の作業割当を更新しました"
     expect(page).to have_content "New Table Name"
   end
+
+  scenario "user clones a table" do
+    sign_in_as @user
+
+    expect {
+      find('#header_menu_table_index').click
+      find("#clone_link_#{@table.id}").click
+
+      expect(page).to have_content "IDが「#{@table.id}」の作業割当を複製しました"
+      expect(page).to have_content "#{@table.title}(コピー)"
+    }.to change(@user.tables, :count).by(1)
+  end
 end
