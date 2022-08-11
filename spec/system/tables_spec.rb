@@ -51,4 +51,16 @@ RSpec.describe "Tables", type: :system do
       expect(page).to have_content "#{@table.title}(コピー)"
     }.to change(@user.tables, :count).by(1)
   end
+
+  scenario "user deletes a table" do
+    sign_in_as @user
+
+    expect {
+      find('#header_menu_table_index').click
+      find("#delete_link_#{@table.id}").click
+
+      expect(page).to have_content "作業割当を削除しました"
+      expect(page).to_not have_content @table.title
+    }.to change(@user.tables, :count).by(-1)
+  end
 end

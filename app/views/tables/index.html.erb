@@ -44,7 +44,7 @@
             <%= link_to "複製", [:clone, table], class: "immutable_color_link", id: "clone_link_#{table.id}" %>
           </td>
           <td>
-            <%= link_to "削除", table, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "immutable_color_link" %>
+            <%= link_to "削除", table, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "immutable_color_link", id: "delete_link_#{table.id}" %>
           </td>
         </tr>
       <% end %>
