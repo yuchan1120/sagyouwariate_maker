@@ -19,6 +19,16 @@ RSpec.describe "Tables", type: :system do
     }.to change(@user.tables, :count).by(1)
   end
 
+  scenario "user calls sample data" do
+    sign_in_as @user
+    visit new_table_path
+
+    find('#sample_data_link').click
+
+    expect(current_path).to eq new_table_path
+    expect(page).to have_xpath "//input[@value='サンプルデータ' and @name='table[title]']"
+  end
+
   scenario "user reads a table" do
     sign_in_as @user
 
