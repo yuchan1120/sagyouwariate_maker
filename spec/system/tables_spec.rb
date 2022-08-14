@@ -73,4 +73,58 @@ RSpec.describe "Tables", type: :system do
       expect(page).to_not have_content @table.title
     }.to change(@user.tables, :count).by(-1)
   end
+
+  describe "user searches the tables" do
+    before do
+      @table1 = Table.create(
+        title: "忙しい月曜日の作業割当",
+        user:  @user,
+      )
+      @table2 = Table.create(
+        title: "暇な月曜日の作業割当",
+        user:  @user,
+      )
+      sign_in_as @user
+      visit tables_path
+    end
+
+    context "when a keyword is entered" do
+      scenario "user finds matching tables" do
+        expect(page).to have_content "忙しい月曜日の作業割当"
+        expect(page).to have_content "暇な月曜日の作業割当"
+
+        fill_in "keyword", with: "月曜日"
+        find('#commit_search').click
+
+        expect(page).to have_content "検索結果：2件"
+        expect(page).to have_content "忙しい月曜日の作業割当"
+        expect(page).to have_content "暇な月曜日の作業割当"
+
+        fill_in "keyword", with: "忙しい"
+        find('#commit_search').click
+
+        expect(page).to have_content "検索結果：1件"
+        expect(page).to have_content "忙しい月曜日の作業割当"
+        expect(page).to_not have_content "暇な月曜日の作業割当"
+
+        fill_in "keyword", with: "火曜日"
+        find('#commit_search').click
+
+        expect(page).to have_content "検索結果：0件"
+        expect(page).to_not have_content "忙しい月曜日の作業割当"
+        expect(page).to_not have_content "暇な月曜日の作業割当"
+      end
+    end
+
+    context "when no keyword is entered" do
+      scenario "user sees all tables" do
+        fill_in "keyword", with: ""
+        find('#commit_search').click
+
+        expect(page).to_not have_content "検索結果：2件"
+        expect(page).to have_content "忙しい月曜日の作業割当"
+        expect(page).to have_content "暇な月曜日の作業割当"
+      end
+    end
+  end
 end
