@@ -4,11 +4,10 @@ RSpec.describe "Tables", type: :system do
   before do
     @user = FactoryBot.create(:user)
     @table = FactoryBot.create(:table, user: @user)
+    sign_in_as @user
   end
 
   scenario "user creates a new table" do
-    sign_in_as @user
-
     expect {
       find('#header_menu_create_new').click
       fill_in "table[title]", with: "Test"
@@ -20,7 +19,6 @@ RSpec.describe "Tables", type: :system do
   end
 
   scenario "user calls sample data" do
-    sign_in_as @user
     visit new_table_path
 
     find('#sample_data_link').click
@@ -30,8 +28,6 @@ RSpec.describe "Tables", type: :system do
   end
 
   scenario "user reads a table" do
-    sign_in_as @user
-
     find('#header_menu_table_index').click
     find("#show_link_#{@table.id}").click
 
@@ -39,8 +35,6 @@ RSpec.describe "Tables", type: :system do
   end
 
   scenario "user updates a table" do
-    sign_in_as @user
-
     find('#header_menu_table_index').click
     find("#edit_link_#{@table.id}").click
     fill_in "table[title]", with: "New Table Name"
@@ -51,8 +45,6 @@ RSpec.describe "Tables", type: :system do
   end
 
   scenario "user clones a table" do
-    sign_in_as @user
-
     expect {
       find('#header_menu_table_index').click
       find("#clone_link_#{@table.id}").click
@@ -63,8 +55,6 @@ RSpec.describe "Tables", type: :system do
   end
 
   scenario "user deletes a table" do
-    sign_in_as @user
-
     expect {
       find('#header_menu_table_index').click
       find("#delete_link_#{@table.id}").click
@@ -84,7 +74,6 @@ RSpec.describe "Tables", type: :system do
         title: "暇な月曜日の作業割当",
         user:  @user,
       )
-      sign_in_as @user
       visit tables_path
     end
 
