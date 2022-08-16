@@ -5,6 +5,7 @@ ja:
         name: 業務名
         time_required: 所要時間
       user:
+        name: ユーザー名
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻

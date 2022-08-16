@@ -26,3 +26,10 @@ navToggle.addEventListener("click", function () {
     this.setAttribute("aria-expanded", "true");
   }
 });
+
+function user_menu() {
+  document.getElementById('user_menu').classList.toggle('user_menu_in');
+}
+document.getElementById('user_menu_link').addEventListener('click' , function () {
+  user_menu();
+} );
