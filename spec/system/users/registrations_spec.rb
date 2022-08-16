@@ -10,6 +10,7 @@ RSpec.describe "Users::Registrations", type: :system do
     expect {
       visit root_path
       find('#sign_in_link').click
+      fill_in "user[name]", with: "一郎"
       fill_in "user[email]", with: "new@example.com"
       fill_in "user[password]", with: "newnew"
       fill_in "user[password_confirmation]", with: "newnew"
