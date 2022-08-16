@@ -4,7 +4,7 @@ RSpec.describe "Works", type: :request do
   before do
     @user = FactoryBot.create(:user)
     @another_user = FactoryBot.create(:another_user)
-    @taxon = FactoryBot.create(:taxon)
+    @taxon = FactoryBot.create(:regular_work)
     @work = FactoryBot.create(:work, user: @user, taxon: @taxon)
   end
 

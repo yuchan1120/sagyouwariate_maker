@@ -9,7 +9,7 @@
       </li>
       <% taxons.each do |taxon| %>
         <li>
-          <%= link_to taxon_path(taxon.id) do %>
+          <%= link_to taxon_path(taxon.id), id: "taxon_link_#{taxon.id}" do %>
             <%= taxon.name %>
           <% end %>
         </li>
