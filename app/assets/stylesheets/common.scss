@@ -405,7 +405,7 @@ text-decoration:underline;
   /*ナビメニューを右に隠した状態になる*/
   top: -270px;
   width: 250px;
-  height: 114px;
+  height: 162px;
   background: #e3e3e3;
   padding: 10px;
 }
@@ -429,9 +429,25 @@ text-decoration:underline;
   transform: translateY(343px);
 }
 
-#user_name{
+#user_menu_link{
   margin-top: 1em;
   margin-right: 4em;
   color: white;
   cursor: pointer;
+}
+
+#user_menu_link:hover {
+  text-decoration:underline;
+}
+
+#you_are_logged_in{
+  width: 80%;
+  margin-left: 10%;
+  text-align: center;
+  background-color: #ccf;
+}
+
+.blue_bold{
+  color: blue;
+  font-weight: bold;
 }
