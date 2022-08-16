@@ -1,8 +1,4 @@
 FactoryBot.define do
-  factory :taxon do
-    name { "定時業務" }
-  end
-
   factory :regular_work, class: Taxon do
     id { 1 }
     name { "定時業務" }

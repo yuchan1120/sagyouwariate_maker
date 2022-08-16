@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Work, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @taxon = FactoryBot.create(:taxon)
+    @taxon = FactoryBot.create(:regular_work)
   end
 
   it "is valid with a name, time_required, user, and taxon" do
