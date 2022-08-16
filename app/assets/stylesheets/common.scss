@@ -397,3 +397,41 @@ text-decoration:underline;
 .validation_error_message_area{
   margin-bottom: 20px;
 }
+
+#user_menu{
+  z-index: 1;
+  position: absolute;
+  right: 30px;
+  /*ナビメニューを右に隠した状態になる*/
+  top: -270px;
+  width: 250px;
+  height: 114px;
+  background: #e3e3e3;
+  padding: 10px;
+}
+
+#user_menu ul li{
+  list-style-type: none;
+}
+#user_menu a{
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  padding: 10px;
+  transition: .5s;
+}
+
+#user_menu a:hover {
+  text-decoration:underline;
+}
+
+.user_menu_in{
+  transform: translateY(343px);
+}
+
+#user_name{
+  margin-top: 1em;
+  margin-right: 4em;
+  color: white;
+  cursor: pointer;
+}
