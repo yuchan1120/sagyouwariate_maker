@@ -8,6 +8,10 @@
   <div class="centered">
     <table>
       <tr>
+        <th><%= f.label :name ,"ユーザー名" %></th>
+        <td><%= f.text_field :name, autofocus: true %></td>
+      </tr>
+      <tr>
         <th><%= f.label :email ,"メールアドレス" %></th>
         <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
       </tr>
