@@ -1,0 +1,26 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'app/channels/application_cable/*'
+    - 'app/helpers/*'
+    - 'app/jobs/*'
+    - 'app/mailers/*'
+    - 'bin/**/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'lib/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'storage/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'config/environments/*'
+    - 'config/initializers/*'
+    - 'config/boot.rb'
+    - 'config/environment.rb'
+    - 'config/puma.rb'
+    - 'config/spring.rb'
+    - 'config.ru'
+    - 'Rakefile'
