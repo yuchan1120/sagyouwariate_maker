@@ -6,6 +6,7 @@
   <% else %>
     <%= link_to "ログイン", new_user_session_path, class:'sign_in_link' %>
     <%= link_to "アカウント登録", new_user_registration_path, class:'sign_in_link' %>
+    <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'sign_in_link' %>
   <% end %>
 </div>
 <% if user_signed_in? %>
@@ -13,7 +14,11 @@
     <div id="you_are_logged_in"><span class="blue_bold"><%= current_user.name %></span>さんが<br>ログインしています。</div>
       <ul>
         <li><%= link_to "アカウント設定", edit_user_registration_path, class: "immutable_color_link", id: "edit_user_registration" %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "immutable_color_link" %></li>
+        <% if current_user.email == 'guestzzz@example.com' %>
+          <li><%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！" }, method: :delete, class: "immutable_color_link" %></li>
+        <% else %>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "immutable_color_link" %></li>
+        <% end %>
       </ul>
   </nav>
 <% end %>
