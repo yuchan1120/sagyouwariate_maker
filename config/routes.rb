@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :taxons, only: [:show]
   get 'search_table' => 'tables#search'
   get 'search_work' => 'works#search'
+  post '/top/guest_sign_in', to: 'top#guest_sign_in'
 end
