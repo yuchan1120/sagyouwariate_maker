@@ -11,7 +11,7 @@
 }
 
 //layouts/header
-.rightside{
+.rightside {
   z-index: 1;
   position: absolute;
   right: 0;
@@ -19,7 +19,7 @@
   padding-right: 1em;
 }
 
-#user_menu_link{
+#user_menu_link {
   margin-top: 1em;
   margin-right: 4em;
   color: white;
@@ -27,10 +27,10 @@
 }
 
 #user_menu_link:hover {
-  text-decoration:underline;
+  text-decoration: underline;
 }
 
-.sign_in_link{
+.sign_in_link {
   color: white;
   text-decoration: none;
   border: solid;
@@ -44,16 +44,16 @@
 }
 
 @media (max-width: 809px) {
-  .rightside{
+  .rightside {
     top: 90px;
   }
-  .sign_in_link{
+  .sign_in_link {
     color: #54c3b4;
     border-color: #54c3b4;
   }
 }
 
-#user_menu{
+#user_menu {
   z-index: 1;
   position: absolute;
   right: 30px;
@@ -64,11 +64,11 @@
   padding: 10px;
 }
 
-#user_menu ul li{
+#user_menu ul li {
   list-style-type: none;
 }
 
-#user_menu a{
+#user_menu a {
   display: block;
   text-decoration: none;
   color: #000000;
@@ -77,26 +77,26 @@
 }
 
 #user_menu a:hover {
-  text-decoration:underline;
+  text-decoration: underline;
 }
 
-.user_menu_in{
+.user_menu_in {
   transform: translateY(343px);
 }
 
-#you_are_logged_in{
+#you_are_logged_in {
   width: 80%;
   margin-left: 10%;
   text-align: center;
   background-color: #ccf;
 }
 
-.blue_bold{
+.blue_bold {
   color: blue;
   font-weight: bold;
 }
 
-.immutable_color_link{
+.immutable_color_link {
   color: blue;
 }
 
@@ -111,7 +111,7 @@
   }
 }
 
-.logo{
+.logo {
   padding-top: 10px;
   display: flex;
   justify-content: center;
@@ -119,7 +119,7 @@
   padding-bottom: 0.5rem;
 }
 
-.logo_icon{
+.logo_icon {
   height: 40px;
 }
 
@@ -127,7 +127,7 @@
   height: 50px;
 }
 
-.nav__item{
+.nav__item {
   padding: 1rem;
   font-size: large;
   transition: all 0.2s;
@@ -171,7 +171,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .nav__item{
+  .nav__item {
     padding-bottom: 10px;
     font-size: large;
     opacity: 0.3;
@@ -211,14 +211,14 @@
 }
 
 //layouts/top
-.page_header_margin_bottom_50px{
+.page_header_margin_bottom_50px {
   display: flex;
   justify-content: center;
   background-color: #e0f0eb;
   margin-bottom: 50px;
 }
 
-.page_title{
+.page_title {
   color: #4ca58c;
 }
 
@@ -232,7 +232,7 @@
   height: 400px;
 }
 
-.logo_icon_large{
+.logo_icon_large {
   height: 80px;
 }
 
@@ -240,13 +240,13 @@
   height: 100px;
 }
 
-.subtitle{
+.subtitle {
   font-size: 30px;
   font-weight: bold;
   color: white;
 }
 
-.flash_message{
+.flash_message {
   margin-bottom: 50px;
 }
 
@@ -256,7 +256,7 @@
   grid-template-columns: 1fr 3fr;
 }
 
-.side{
+.side {
   width: 90%;
   margin-left: 10%;
 }
@@ -265,50 +265,50 @@
   position: -webkit-sticky;
   position: sticky;
   top: 50px;
-  color:#676767;
-  font-size:13px;
-  width:100%;
+  color: #676767;
+  font-size: 13px;
+  width: 100%;
   text-align: center;
 }
 
 .left-title {
-  margin:0 15px 0 20px;
-  padding:7px 20px;
+  margin: 0 15px 0 20px;
+  padding: 7px 20px;
   font-size: 25px;
-  font-weight:bold;
-  background-color:#E3E3E3;
-  color:#333;
+  font-weight: bold;
+  background-color: #E3E3E3;
+  color: #333;
   border-top: 1px solid #c7c7c7;
   border-right: 1px solid #c7c7c7;
   border-left: 1px solid #c7c7c7;
 }
 
 .headline {
-  margin:0 15px 7px 20px;
-  padding:7px 8px 7px 13px;
+  margin: 0 15px 7px 20px;
+  padding: 7px 8px 7px 13px;
   font-size: 17px;
-  line-height:170%;
+  line-height: 170%;
   border: 1px solid #c7c7c7;
 }
 
-.headline ul{
+.headline ul {
   padding-left: 1em;
 }
 
-.headline li{
+.headline li {
   text-align: left;
 }
 
-.headline a{
-  color:#094a94;
-  text-decoration:none;
+.headline a {
+  color: #094a94;
+  text-decoration: none;
 }
 
-.headline a:hover{
-  text-decoration:underline;
+.headline a:hover {
+  text-decoration: underline;
 }
 
-.top_content{
+.top_content {
   width: 83%;
   margin-left: 10%;
 }
@@ -325,28 +325,28 @@ table td {
   text-align: center;
 }
 
-.page_header_margin_bottom_20px{
+.page_header_margin_bottom_20px {
   display: flex;
   justify-content: center;
   background-color: #e0f0eb;
   margin-bottom: 20px;
 }
 
-.vertically_aligned_and_centered{
+.vertically_aligned_and_centered {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   flex-flow: column;
 }
 
-.sample_data_link_area{
+.sample_data_link_area {
   z-index: 1;
   position: absolute;
   right: 20%;
   margin-top: 1em;
 }
 
-.sample_data_link{
+.sample_data_link {
   color: #4ca58c;
   text-decoration: none;
   border: solid;
@@ -360,27 +360,27 @@ table td {
   opacity: 0.7;
 }
 
-.margin_top_0{
+.margin_top_0 {
   margin-top: 0;
 }
 
-.centered{
+.centered {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.sagyouwariate{
+.sagyouwariate {
   width: 95%;
 }
 
 //tables/row_regular_work
-.text_field{
+.text_field {
   width: 100%;
 }
 
 //tables/index
-.search_form{
+.search_form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -394,7 +394,7 @@ table td {
 }
 
 //tables/show
-.printing_link{
+.printing_link {
   color: #4ca58c;
   text-decoration: none;
   border: solid;
@@ -409,20 +409,20 @@ table td {
 
 .printing_link:hover {
   opacity: 0.7;
-  }
+}
 
 //shared/error
-.validation_error_message_area{
+.validation_error_message_area {
   margin-bottom: 20px;
 }
 
-.validation_error_message{
+.validation_error_message {
   margin: 8px;
   color: red;
 }
 
 //works/registration_form
-.table_bottom{
+.table_bottom {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -431,42 +431,42 @@ table td {
 
 //shared/side_bar
 .link {
-  margin:0 15px 7px 20px;
-  padding:7px 8px 7px 13px;
+  margin: 0 15px 7px 20px;
+  padding: 7px 8px 7px 13px;
   font-size: 20px;
-  line-height:170%;
+  line-height: 170%;
   border: 1px solid #c7c7c7;
 }
 
-.link ul{
+.link ul {
   text-align: left;
 }
 
-.link a{
-color:#094a94;
-text-decoration:none;
+.link a {
+  color: #094a94;
+  text-decoration: none;
 }
 
-.link a:hover{
-text-decoration:underline;
+.link a:hover {
+  text-decoration: underline;
 }
 
 //registration/edit
-.fine_print{
+.fine_print {
   font-weight: normal;
 }
 
-#delete_account{
+#delete_account {
   color: red;
   font-weight: bold;
   margin-top: 30px;
 }
 
 //devise/shared/error_messages"
-#error_explanation{
+#error_explanation {
   text-align: center;
 }
 
-#error_explanation li{
+#error_explanation li {
   list-style-type: none;
 }
