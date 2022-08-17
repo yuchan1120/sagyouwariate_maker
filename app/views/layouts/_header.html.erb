@@ -12,7 +12,7 @@
   <nav id="user_menu">
     <div id="you_are_logged_in"><span class="blue_bold"><%= current_user.name %></span>さんが<br>ログインしています。</div>
       <ul>
-        <li><%= link_to "アカウント情報編集", edit_user_registration_path, class: "immutable_color_link" %></li>
+        <li><%= link_to "アカウント設定", edit_user_registration_path, class: "immutable_color_link", id: "edit_user_registration" %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "immutable_color_link" %></li>
       </ul>
   </nav>
