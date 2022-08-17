@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Taxons", type: :system do
+RSpec.describe 'Taxons', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @taxon = FactoryBot.create(:regular_work)
@@ -9,7 +9,7 @@ RSpec.describe "Taxons", type: :system do
     visit works_path
   end
 
-  scenario "user sees works in taxon" do
+  scenario 'user sees works in taxon' do
     find("#taxon_link_#{@taxon.id}").click
 
     expect(current_path).to eq taxon_path(@taxon.id)
