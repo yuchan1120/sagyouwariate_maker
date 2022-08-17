@@ -43,3 +43,6 @@
     <a href="javascript:history.back()">キャンセル</a>　　<%= f.submit "更新", id:'submit_update' %>
   </div>
 <% end %>
+<div class="centered">
+  <%= link_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントのすべてのデータが失われます。本当によろしいですか？" }, method: :delete, id: 'delete_account' %>
+</div>
