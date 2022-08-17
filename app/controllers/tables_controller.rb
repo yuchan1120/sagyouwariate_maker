@@ -1,6 +1,7 @@
 class TablesController < ApplicationController
   layout 'tables_show', only: :show
   before_action :authenticate_user!
+  before_action :set_each_works, only: %i[new edit]
   before_action :table_owner?, only: %i[show edit update destroy]
 
   def index
@@ -9,10 +10,6 @@ class TablesController < ApplicationController
 
   def new
     @@sample_data = nil unless defined? @@sample_data
-    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
-    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
-    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
-    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
     if @@sample_data.nil?
       @table = Table.new
     else
@@ -51,10 +48,6 @@ class TablesController < ApplicationController
   end
 
   def create
-    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
-    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
-    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
-    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
     @table = current_user.tables.new(table_params)
     if @table.save
       flash[:notice] = '作業割当を新規登録しました'
@@ -66,12 +59,7 @@ class TablesController < ApplicationController
 
   def show; end
 
-  def edit
-    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
-    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
-    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
-    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
-  end
+  def edit; end
 
   def update
     if @table.update(table_params)
@@ -109,6 +97,13 @@ class TablesController < ApplicationController
   end
 
   private
+
+  def set_each_works
+    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
+    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
+    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
+    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
+  end
 
   def table_owner?
     @table = Table.find(params[:id])
