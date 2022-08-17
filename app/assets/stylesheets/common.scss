@@ -456,3 +456,11 @@ text-decoration:underline;
 .fine_print{
   font-weight: normal;
 }
+
+#error_explanation{
+  text-align: center;
+}
+
+#error_explanation li{
+  list-style-type: none;
+}
