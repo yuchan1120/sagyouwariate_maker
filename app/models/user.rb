@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :tables
-  has_many :works
+  has_many :tables, dependent: :destroy
+  has_many :works, dependent: :destroy
   validates :name, presence: true
   validates :name, length: { maximum: 7 }
   # Include default devise modules. Others available are:

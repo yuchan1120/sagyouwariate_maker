@@ -24,3 +24,23 @@ AllCops:
     - 'config/spring.rb'
     - 'config.ru'
     - 'Rakefile'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/RedundantInterpolation:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/users/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

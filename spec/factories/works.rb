@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :work do
-    name {"仮点検"}
-    time_required { "10" }
+    name { '仮点検' }
+    time_required { '10' }
 
     trait :invalid do
       name { nil }
