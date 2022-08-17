@@ -28,16 +28,13 @@ RSpec.describe 'Users::Registrations', type: :system do
 
   scenario 'user updates an account' do
     sign_in_as @user
-    visit edit_user_registration_path
+    visit root_path
+    find('#edit_user_registration').click
     fill_in 'user[password]', with: 'new_password'
     fill_in 'user[password_confirmation]', with: 'new_password'
     fill_in 'user[current_password]', with: @user.password
     find('#submit_update').click
 
-    fill_in 'user[email]', with: @user.email
-    fill_in 'user[password]', with: 'new_password'
-    find('#commit_login').click
-
-    expect(page).to have_content 'ログインしました。'
+    expect(page).to have_content 'アカウント情報を変更しました。'
   end
 end

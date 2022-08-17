@@ -31,14 +31,5 @@ RSpec.describe 'Users::Registrations', type: :request do
         expect(response).to be_successful
       end
     end
-
-    describe '#update' do
-      it 'updates a user' do
-        sign_in @user
-        user_params = FactoryBot.attributes_for(:user, email: 'new@example.com')
-        patch user_registration_path(@user.id), params: { user: user_params }
-        expect(@user.reload.email).to eq 'new@example.com'
-      end
-    end
   end
 end

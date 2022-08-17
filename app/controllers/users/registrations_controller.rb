@@ -22,15 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find(current_user.id)
   end
 
-  def update
-    @user = User.find(current_user.id)
-    if @user.update(user_params)
-      redirect_to :tables
-    else
-      render 'edit'
-    end
-  end
-
   def create_default_works
     Work.create(name: '仮点検', time_required: 10, user_id: current_user.id, taxon_id: 1)
     Work.create(name: '温度点検', time_required: 10, user_id: current_user.id, taxon_id: 1)

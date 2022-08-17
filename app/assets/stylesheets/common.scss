@@ -317,6 +317,7 @@ table td {
   background-color: #ff69b4;
   color: white;
   text-align: center;
+  margin: 0;
 }
 
 .sagyouwariate{
@@ -329,6 +330,12 @@ table td {
 
 .immutable_color_link{
   color: blue;
+}
+
+#delete_account{
+  color: red;
+  font-weight: bold;
+  margin-top: 30px;
 }
 
 .table_bottom{
@@ -450,4 +457,16 @@ text-decoration:underline;
 .blue_bold{
   color: blue;
   font-weight: bold;
+}
+
+.fine_print{
+  font-weight: normal;
+}
+
+#error_explanation{
+  text-align: center;
+}
+
+#error_explanation li{
+  list-style-type: none;
 }
