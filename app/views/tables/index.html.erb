@@ -35,16 +35,16 @@
           <td><%= table.updated_at.to_s(:datetime_jp) %></td>
           <td><%= table.created_at.to_s(:datetime_jp) %></td>
           <td>
-            <%= link_to "詳細", table, class: "immutable_color_link", id: "show_link_#{table.id}" %>
+            <%= link_to "詳細", table, class: "color_blue", id: "show_table_#{table.id}" %>
           </td>
           <td>
-            <%= link_to "編集", [:edit, table], class: "immutable_color_link", id: "edit_link_#{table.id}" %>
+            <%= link_to "編集", [:edit, table], class: "color_blue", id: "edit_table_#{table.id}" %>
           </td>
           <td>
-            <%= link_to "複製", [:clone, table], class: "immutable_color_link", id: "clone_link_#{table.id}" %>
+            <%= link_to "複製", [:clone, table], class: "color_blue", id: "clone_table_#{table.id}" %>
           </td>
           <td>
-            <%= link_to "削除", table, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "immutable_color_link", id: "delete_link_#{table.id}" %>
+            <%= link_to "削除", table, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "color_blue", id: "delete_table_#{table.id}" %>
           </td>
         </tr>
       <% end %>

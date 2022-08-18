@@ -5,7 +5,7 @@
   <div class="side">
     <%= render 'shared/side_bar', taxons: @all_taxons %>
   </div>
-  <div class="top_content">
+  <div>
     <%= render 'shared/search_results' %>
     <div class="search_form">
       <%= form_with url: search_work_path, method: :get, local: true do |f| %>

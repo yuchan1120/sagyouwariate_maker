@@ -14,7 +14,7 @@
       </tr>
     </table>
   </div>
-  <div class="table_bottom">
+  <div class="form_bottom">
     <% if devise_mapping.rememberable? %>
       <div class="field">
         <%= f.check_box :remember_me %>
@@ -22,11 +22,11 @@
       </div>
     <% end %>
   </div>
-  <div class="table_bottom">
-    <%= f.submit "ログイン", id:'commit_login' %>
-    　<%= link_to "アカウント登録", new_registration_path(resource_name), class: "immutable_color_link" %>
+  <div class="form_bottom">
+    <%= f.submit "ログイン", id:'submit_login' %>
+    　<%= link_to "アカウント登録", new_registration_path(resource_name), class: "color_blue" %>
   </div>
-    <div class="table_bottom">
-    　<%= link_to "パスワードをお忘れの方はこちら", new_password_path(resource_name), class: "immutable_color_link" %>
+    <div class="form_bottom">
+    　<%= link_to "パスワードをお忘れの方はこちら", new_password_path(resource_name), class: "color_blue" %>
   </div>
 <% end %>

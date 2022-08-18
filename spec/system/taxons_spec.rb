@@ -10,7 +10,7 @@ RSpec.describe 'Taxons', type: :system do
   end
 
   scenario 'user sees works in taxon' do
-    find("#taxon_link_#{@taxon.id}").click
+    find("#taxon_#{@taxon.id}").click
 
     expect(current_path).to eq taxon_path(@taxon.id)
     expect(page).to have_content @work.name

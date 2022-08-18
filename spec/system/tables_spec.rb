@@ -11,7 +11,7 @@ RSpec.describe 'Tables', type: :system do
     expect do
       find('#header_menu_create_new').click
       fill_in 'table[title]', with: 'Test'
-      find('#commit_save').click
+      find('#submit_save').click
 
       expect(page).to have_content '作業割当を新規登録しました'
       expect(page).to have_content 'Test'
@@ -21,7 +21,7 @@ RSpec.describe 'Tables', type: :system do
   scenario 'user calls sample data' do
     visit new_table_path
 
-    find('#sample_data_link').click
+    find('#set_sample_data_tables').click
 
     expect(current_path).to eq new_table_path
     expect(page).to have_xpath "//input[@value='サンプルデータ' and @name='table[title]']"
@@ -29,16 +29,16 @@ RSpec.describe 'Tables', type: :system do
 
   scenario 'user reads a table' do
     find('#header_menu_table_index').click
-    find("#show_link_#{@table.id}").click
+    find("#show_table_#{@table.id}").click
 
     expect(current_path).to eq table_path(@table.id)
   end
 
   scenario 'user updates a table' do
     find('#header_menu_table_index').click
-    find("#edit_link_#{@table.id}").click
+    find("#edit_table_#{@table.id}").click
     fill_in 'table[title]', with: 'New Table Name'
-    find('#commit_save').click
+    find('#submit_save').click
 
     expect(page).to have_content "IDが「#{@table.id}」の作業割当を更新しました"
     expect(page).to have_content 'New Table Name'
@@ -47,7 +47,7 @@ RSpec.describe 'Tables', type: :system do
   scenario 'user clones a table' do
     expect do
       find('#header_menu_table_index').click
-      find("#clone_link_#{@table.id}").click
+      find("#clone_table_#{@table.id}").click
 
       expect(page).to have_content "IDが「#{@table.id}」の作業割当を複製しました"
       expect(page).to have_content "#{@table.title}(コピー)"
@@ -57,7 +57,7 @@ RSpec.describe 'Tables', type: :system do
   scenario 'user deletes a table' do
     expect do
       find('#header_menu_table_index').click
-      find("#delete_link_#{@table.id}").click
+      find("#delete_table_#{@table.id}").click
 
       expect(page).to have_content '作業割当を削除しました'
       expect(page).to_not have_content @table.title
