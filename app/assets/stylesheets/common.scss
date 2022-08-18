@@ -553,6 +553,14 @@ table td {
   text-decoration: underline;
 }
 
+//shared/works_index
+.works_index {
+  @media (max-width: 759px) {
+    table-layout: fixed;
+    width: 100%;
+  }
+}
+
 //registration/edit
 .fine_print {
   font-weight: normal;
