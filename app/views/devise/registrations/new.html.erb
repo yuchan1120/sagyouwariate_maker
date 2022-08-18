@@ -32,6 +32,6 @@
   </div>
   <div class="form_bottom">
     <%= f.submit "登録", id: "submit_registration" %>
-    　<%= link_to "ログイン", new_session_path(resource_name), class: "color_blue" %>
+    　<%= link_to "ログイン", new_session_path(resource_name), class: "color_blue", data: {"turbolinks" => false} %>
   </div>
 <% end %>
