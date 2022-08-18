@@ -9,7 +9,7 @@ RSpec.describe 'Users::Registrations', type: :system do
   scenario 'user registers a new account' do
     expect do
       visit root_path
-      find('#sign_in_link').click
+      find('#new_user_registration').click
       fill_in 'user[name]', with: '一郎'
       fill_in 'user[email]', with: 'new@example.com'
       fill_in 'user[password]', with: 'newnew'

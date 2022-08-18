@@ -1,10 +1,10 @@
 module LoginSupport
   def sign_in_as(user)
     visit root_path
-    find('#upper_right_login').click
+    find('#new_user_session').click
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
-    find('#commit_login').click
+    find('#submit_login').click
   end
 end
 

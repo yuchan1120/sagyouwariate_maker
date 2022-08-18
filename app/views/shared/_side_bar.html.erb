@@ -1,6 +1,6 @@
-<div id="top_left">
-  <div class="left-title">カテゴリ</div>
-  <div class="link">
+<div id="side_bar">
+  <div class="side_bar_title">カテゴリ</div>
+  <div class="side_bar_link">
     <ul>
       <li>
         <%= link_to works_path do %>
@@ -9,7 +9,7 @@
       </li>
       <% taxons.each do |taxon| %>
         <li>
-          <%= link_to taxon_path(taxon.id), id: "taxon_link_#{taxon.id}" do %>
+          <%= link_to taxon_path(taxon.id), id: "taxon_#{taxon.id}" do %>
             <%= taxon.name %>
           <% end %>
         </li>

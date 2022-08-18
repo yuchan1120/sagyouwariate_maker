@@ -17,7 +17,7 @@ RSpec.describe 'Works', type: :system do
       fill_in 'work[name]', with: 'Test'
       fill_in 'work[time_required]', with: '10'
       select '定時業務', from: 'work[taxon_id]'
-      find('#commit_registration').click
+      find('#submit_registration').click
 
       expect(page).to have_content '業務を新規登録しました'
       expect(page).to have_content 'Test'
@@ -26,9 +26,9 @@ RSpec.describe 'Works', type: :system do
 
   scenario 'user updates a work' do
     find('#header_menu_work_index').click
-    find("#edit_link_#{@work.id}").click
+    find("#edit_work_#{@work.id}").click
     fill_in 'work[name]', with: 'New work Name'
-    find('#commit_registration').click
+    find('#submit_registration').click
 
     expect(page).to have_content "IDが「#{@work.id}」の業務を更新しました"
     expect(page).to have_content 'New work Name'
@@ -37,7 +37,7 @@ RSpec.describe 'Works', type: :system do
   scenario 'user deletes a work' do
     expect do
       find('#header_menu_work_index').click
-      find("#delete_link_#{@work.id}").click
+      find("#delete_work_#{@work.id}").click
 
       expect(page).to have_content '業務を削除しました'
       expect(page).to_not have_content @work.name
