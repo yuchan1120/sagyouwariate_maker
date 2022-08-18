@@ -7,8 +7,8 @@
         <th><%= f.label :taxon_id ,"カテゴリ" %></th>
       </tr>
       <tr>
-        <td><%= f.text_field :name %></td>
-        <td><%= f.number_field :time_required %></td>
+        <td><%= f.text_field :name, class: "work_form_input" %></td>
+        <td><%= f.number_field :time_required, class: "work_form_input" %></td>
         <td><%= f.select :taxon_id, [['定時業務', 1], ['納品業務', 2], ['商品管理業務', 3], ['清掃業務', 4]], include_blank: true, selected: 1 %></td>
       </tr>
     </table>

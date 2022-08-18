@@ -1,4 +1,4 @@
-<div class="upper_right">
+<div class="login_link_area">
   <% if user_signed_in? %>
     <div id="user_menu_link">
       ユーザーメニュー ▼
@@ -52,6 +52,16 @@
           </li>
           <li class="header_menu__item">
             <%= link_to "業務一覧", works_path, id:'header_menu_work_index' %>
+          </li>
+          <li class="header_menu__item_mobile">
+            <%= link_to "アカウント設定", edit_user_registration_path %>
+          </li>
+          <li class="header_menu__item_mobile">
+              <% if current_user.email == 'guestzzz@example.com' %>
+                <%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！" }, method: :delete %>
+              <% else %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <% end %>
           </li>
         </ul>
       </nav>

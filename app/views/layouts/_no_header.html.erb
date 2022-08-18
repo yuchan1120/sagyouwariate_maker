@@ -1,4 +1,4 @@
-<div class="upper_right">
+<div class="upper_right_no_header">
   <% if user_signed_in? %>
   <%= link_to "#{current_user.email}", destroy_user_session_path, method: :delete, class: "color_blue" %>
   <% else %>
@@ -7,14 +7,15 @@
     <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'white_button' %>
   <% end %>
 </div>
+<div class="logo_bottom">
+  <%= link_to "ログイン", new_user_session_path, class:'white_button', id:'new_user_session' %>
+  <%= link_to "アカウント登録", new_user_registration_path, class:'white_button', id:'new_user_registration' %>
+  <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'white_button' %>
+</div>
 <div class="first_view">
   <div class="logo">
-    <div>
       <%= image_tag '金槌とペンチ.jpg', class:'logo_icon_large' %>
-    </div>
-    <div>
       <%= image_tag 'logo_text.jpg', class:'logo_text_large' %>
-    </div>
   </div>
   <div class="subtitle">
     作業割当を簡単に作成できる便利ツール
