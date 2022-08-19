@@ -5,7 +5,9 @@
       <p>【注意】<br>　ゲストユーザーはログアウトするとデータがリセットされます。</p>
       <%= link_to  top_guest_sign_in_path, method: :post, class:'top_link', data: {"turbolinks" => false} do %>
         <div class="create_without_user_registration_area">
-          ユーザー登録なしで作成する
+          ユーザー登録なし
+          <br>
+          で作成する
         </div>
       <% end %>
     </div>
@@ -27,14 +29,14 @@
   </div>
 <% end %>
 <div class="vertically_aligned_and_centered">
-  <h1 class="under_green">カンタン作業登録で作業割当をスピード作成！</h1>
+  <h1 class="gist_green">カンタン作業登録で作業割当をスピード作成！</h1>
   <%= image_tag 'easy_registration.jpg', class: 'top_image' %>
 </div>
 <div class="vertically_aligned_and_centered">
-  <h1 class="under_green">更新も簡単！適正な人員配置を常に実現！</h1>
+  <h1 class="gist_green">更新も簡単！適正な人員配置を常に実現！</h1>
   <%= image_tag 'speed_update.jpg', class: 'top_image' %>
 </div>
 <div class="vertically_aligned_and_centered">
-  <h1 class="under_orange">もう残業なんてさせません！!</h1>
+  <h1 class="gist_orange">もう残業なんてさせません！！</h1>
   <%= image_tag 'at_the_end.jpg', class: 'top_image_last' %>
 </div>
