@@ -3,6 +3,10 @@ class TopController < ApplicationController
 
   def index; end
 
+  def usage
+    authenticate_user!
+  end
+
   def guest_sign_in
     user = User.find_or_create_by!(name: 'ゲスト', email: 'guestzzz@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -10,7 +14,7 @@ class TopController < ApplicationController
     sign_in user
     create_default_works
     create_default_table
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to new_table_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   def create_default_works
