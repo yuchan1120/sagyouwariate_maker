@@ -39,7 +39,7 @@ https://sagyouwariate-maker.herokuapp.com/
 <br>
 
 ## ER図
-![portfolio_er](https://user-images.githubusercontent.com/95864276/185744142-34323e4d-bfea-4969-8dd5-ff9d387c5e74.jpg)
+![portfolio_er](https://user-images.githubusercontent.com/95864276/185769573-dc4a59c7-aa41-4542-bafb-6a95fa41f6c6.jpg)
 
 <br>
 
