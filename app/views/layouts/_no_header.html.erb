@@ -1,0 +1,27 @@
+<div class="upper_right_no_header">
+  <% unless user_signed_in? %>
+    <%= link_to "ログイン", new_user_session_path, class:'white_button', id:'new_user_session', data: {"turbolinks" => false} %>
+    <%= link_to "アカウント登録", new_user_registration_path, class:'white_button', id:'new_user_registration', data: {"turbolinks" => false} %>
+    <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'white_button', data: {"turbolinks" => false} %>
+  <% end %>
+</div>
+<div class="logo_bottom">
+  <%= link_to "ログイン", new_user_session_path, class:'white_button', data: {"turbolinks" => false} %>
+  <%= link_to "アカウント登録", new_user_registration_path, class:'white_button', data: {"turbolinks" => false} %>
+  <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'white_button', data: {"turbolinks" => false} %>
+</div>
+<div class="first_view">
+  <div class="logo">
+      <%= image_tag '金槌とペンチ.jpg', class:'logo_icon_large' %>
+      <%= image_tag 'logo_text.jpg', class:'logo_text_large' %>
+  </div>
+  <div class="subtitle">
+    作業割当を簡単に作成できる便利ツール
+  </div>
+  <div class="subtitle">
+    あなたの店舗運営をサポートします。
+  </div>
+</div>
+<div class="flash_message">
+  <%= render 'layouts/flash_message' %>
+</div>

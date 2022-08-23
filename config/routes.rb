@@ -1,3 +1,20 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  root 'top#index'
+  resources :tables do
+    collection do
+      get 'set_sample_data'
+    end
+    member do
+      get 'clone'
+    end
+  end
+  resources :works
+  resources :taxons, only: [:show]
+  get 'search_table' => 'tables#search'
+  get 'search_work' => 'works#search'
+  get 'usage' => 'top#usage'
+  post '/top/guest_sign_in', to: 'top#guest_sign_in'
 end

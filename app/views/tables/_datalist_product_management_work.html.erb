@@ -1,0 +1,5 @@
+<datalist id="product_management_work">
+  <% product_management_works.each do |product_management_work| %>
+    <option value="<%= product_management_work.name %>　(<%= product_management_work.time_required %>分)">
+  <% end %>
+</datalist>

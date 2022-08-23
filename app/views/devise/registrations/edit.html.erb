@@ -1,0 +1,48 @@
+<div class="page_header_margin_bottom_50px">
+  <h1 class="page_title">アカウント設定</h1>
+</div>
+<div class="centered">
+  <%= render "devise/shared/error_messages", resource: resource %>
+</div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="centered">
+    <table>
+      <tr>
+        <th><%= f.label :name ,"ユーザー名" %></th>
+        <td><%= f.text_field :name, autofocus: true %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :email ,"メールアドレス" %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :password %><br><span class="fine_print">※変更したくない場合は<br>空白のままにしてください</span>
+        </th>
+        <td>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <br>
+          <% if @minimum_password_length %>
+            (<%= @minimum_password_length %>文字以上)
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :password_confirmation ,"パスワード（確認用）" %></th>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :current_password %><br><span class="fine_print">※変更を確認するには<br>現在のパスワードが必要です</span>
+        </th>
+        <td><%= f.password_field :current_password, autocomplete: "current-password" %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="form_bottom">
+    <a href="javascript:history.back()">キャンセル</a>　　<%= f.submit "更新", id:'submit_update' %>
+  </div>
+<% end %>
+<div class="centered">
+  <%= link_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントのすべてのデータが失われます。本当によろしいですか？", "turbolinks" => false }, method: :delete, id: 'delete_account' %>
+</div>

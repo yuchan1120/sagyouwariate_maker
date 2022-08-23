@@ -11,3 +11,25 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+let header_menuToggle = document.querySelector(".header_menu__toggle");
+let header_menuWrapper = document.querySelector(".header_menu__wrapper");
+
+header_menuToggle.addEventListener("click", function () {
+  if (header_menuWrapper.classList.contains("active")) {
+    this.setAttribute("aria-expanded", "false");
+    this.setAttribute("aria-label", "menu");
+    header_menuWrapper.classList.remove("active");
+  } else {
+    header_menuWrapper.classList.add("active");
+    this.setAttribute("aria-label", "close menu");
+    this.setAttribute("aria-expanded", "true");
+  }
+});
+
+function user_menu() {
+  document.getElementById('user_menu').classList.toggle('user_menu_in');
+}
+document.getElementById('user_menu_link').addEventListener('click' , function () {
+  user_menu();
+} );

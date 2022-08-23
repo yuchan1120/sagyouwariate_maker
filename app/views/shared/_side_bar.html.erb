@@ -1,0 +1,19 @@
+<div id="side_bar">
+  <div class="side_bar_title">カテゴリ</div>
+  <div class="side_bar_link">
+    <ul>
+      <li>
+        <%= link_to works_path, data: {"turbolinks" => false} do %>
+          全業務
+        <% end %>
+      </li>
+      <% taxons.each do |taxon| %>
+        <li>
+          <%= link_to taxon_path(taxon.id), id: "taxon_#{taxon.id}", data: {"turbolinks" => false} do %>
+            <%= taxon.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
