@@ -99,10 +99,10 @@ class TablesController < ApplicationController
   private
 
   def set_each_works
-    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
-    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
-    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
-    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
+    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1']).order(:name)
+    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2']).order(:name)
+    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3']).order(:name)
+    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4']).order(:name)
   end
 
   def table_owner?
