@@ -5,7 +5,7 @@ class TablesController < ApplicationController
   before_action :table_owner?, only: %i[show edit update destroy]
 
   def index
-    @tables = Table.owner(current_user).order(updated_at: "DESC")
+    @tables = Table.owner(current_user).order(updated_at: 'DESC')
   end
 
   def new
@@ -87,10 +87,10 @@ class TablesController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @tables = Table.owner(current_user).order(updated_at: "DESC").search_results(params[:keyword])
+      @tables = Table.owner(current_user).order(updated_at: 'DESC').search_results(params[:keyword])
       flash[:search_results] = "検索結果：#{@tables.count}件"
     else
-      @tables = Table.owner(current_user).order(updated_at: "DESC")
+      @tables = Table.owner(current_user).order(updated_at: 'DESC')
       flash[:search_results] = nil
     end
     render 'index'
