@@ -5,7 +5,7 @@ class TablesController < ApplicationController
   before_action :table_owner?, only: %i[show edit update destroy]
 
   def index
-    @tables = Table.where('user_id::text LIKE?', "#{current_user.id}")
+    @tables = Table.where('user_id::text LIKE?', "#{current_user.id}").order(updated_at: "DESC")
   end
 
   def new
@@ -87,10 +87,10 @@ class TablesController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @tables = Table.where(['user_id::text like? AND title like?', "#{current_user.id}", "%#{params[:keyword]}%"])
+      @tables = Table.where(['user_id::text like? AND title like?', "#{current_user.id}", "%#{params[:keyword]}%"]).order(updated_at: "DESC")
       flash[:search_results] = "検索結果：#{@tables.count}件"
     else
-      @tables = Table.where('user_id::text LIKE?', "#{current_user.id}")
+      @tables = Table.where('user_id::text LIKE?', "#{current_user.id}").order(updated_at: "DESC")
       flash[:search_results] = nil
     end
     render 'index'
