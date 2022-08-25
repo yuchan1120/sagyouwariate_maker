@@ -5,7 +5,7 @@ class TablesController < ApplicationController
   before_action :table_owner?, only: %i[show edit update destroy]
 
   def index
-    @tables = Table.where('user_id::text LIKE?', "#{current_user.id}")
+    @tables = Table.owner(current_user).order(updated_at: 'DESC')
   end
 
   def new
@@ -87,10 +87,10 @@ class TablesController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @tables = Table.where(['user_id::text like? AND title like?', "#{current_user.id}", "%#{params[:keyword]}%"])
+      @tables = Table.owner(current_user).order(updated_at: 'DESC').search_results(params[:keyword])
       flash[:search_results] = "検索結果：#{@tables.count}件"
     else
-      @tables = Table.where('user_id::text LIKE?', "#{current_user.id}")
+      @tables = Table.owner(current_user).order(updated_at: 'DESC')
       flash[:search_results] = nil
     end
     render 'index'
@@ -99,10 +99,10 @@ class TablesController < ApplicationController
   private
 
   def set_each_works
-    @regular_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '1'])
-    @deliver_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '2'])
-    @product_management_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '3'])
-    @cleaning_works = Work.where(['user_id::text LIKE? AND taxon_id::text LIKE?', "#{current_user.id}", '4'])
+    @regular_works = Work.owner(current_user).category(1).order(:name)
+    @deliver_works = Work.owner(current_user).category(2).order(:name)
+    @product_management_works = Work.owner(current_user).category(3).order(:name)
+    @cleaning_works = Work.owner(current_user).category(4).order(:name)
   end
 
   def table_owner?
