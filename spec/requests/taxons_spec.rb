@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Taxons', type: :request do
   before do
-    @user = FactoryBot.create(:user)
-    @taxon = FactoryBot.create(:regular_work)
+    @user = create(:user)
+    @taxon = create(:regular_work)
   end
 
   describe '#show' do

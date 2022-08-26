@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Table, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @another_user = FactoryBot.create(:another_user)
+    @user = create(:user)
+    @another_user = create(:another_user)
   end
 
   it 'is valid with an user' do
@@ -27,8 +27,8 @@ RSpec.describe Table, type: :model do
   end
 
   it 'returns tables with matching owner' do
-    @table1 = FactoryBot.create(:table, user: @user)
-    @table2 = FactoryBot.create(:table, user: @another_user)
+    @table1 = create(:table, user: @user)
+    @table2 = create(:table, user: @another_user)
 
     expect(Table.owner(@user)).to include(@table1)
     expect(Table.owner(@user)).to_not include(@table2)
@@ -37,8 +37,8 @@ RSpec.describe Table, type: :model do
   end
 
   it 'returns tables that match the search term' do
-    @table1 = FactoryBot.create(:table, title: '忙しい月曜日の作業割当', user: @user)
-    @table2 = FactoryBot.create(:table, title: '暇な月曜日の作業割当', user: @user)
+    @table1 = create(:table, title: '忙しい月曜日の作業割当', user: @user)
+    @table2 = create(:table, title: '暇な月曜日の作業割当', user: @user)
 
     expect(Table.search_results('月曜日')).to include(@table1, @table2)
     expect(Table.search_results('忙しい')).to include(@table1)

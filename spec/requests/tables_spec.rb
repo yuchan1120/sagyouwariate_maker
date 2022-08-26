@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Tables', type: :request do
   before do
-    @user = FactoryBot.create(:user)
-    @another_user = FactoryBot.create(:another_user)
-    @table = FactoryBot.create(:table, user: @user)
+    @user = create(:user)
+    @another_user = create(:another_user)
+    @table = create(:table, user: @user)
   end
 
   describe '#index' do
@@ -54,7 +54,7 @@ RSpec.describe 'Tables', type: :request do
   describe '#create' do
     context 'as an authorized user' do
       it 'adds a table' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         sign_in @user
         expect do
           post tables_path, params: { table: table_params }
@@ -64,20 +64,20 @@ RSpec.describe 'Tables', type: :request do
 
     context 'as a guest' do
       it 'does not adds a table' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         expect do
           post tables_path, params: { table: table_params }
         end.to_not change(Table, :count)
       end
 
       it 'returns a 302 response' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         post tables_path, params: { table: table_params }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         post tables_path, params: { table: table_params }
         expect(response).to redirect_to '/users/sign_in'
       end
@@ -147,7 +147,7 @@ RSpec.describe 'Tables', type: :request do
   describe '#update' do
     context 'as an authorized user' do
       it 'updates a table' do
-        table_params = FactoryBot.attributes_for(:table, title: 'New Table Name')
+        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @user
         patch table_path(@table.id), params: { table: table_params }
         expect(@table.reload.title).to eq 'New Table Name'
@@ -156,14 +156,14 @@ RSpec.describe 'Tables', type: :request do
 
     context 'as an unauthorized user' do
       it 'does not update the table' do
-        table_params = FactoryBot.attributes_for(:table, title: 'New Table Name')
+        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @another_user
         patch table_path(@table.id), params: { table: table_params }
         expect(@table.reload.title).to eq '新しい作業割当'
       end
 
       it 'redirects the page to root_path' do
-        table_params = FactoryBot.attributes_for(:table, title: 'New Table Name')
+        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @another_user
         patch table_path(@table.id), params: { table: table_params }
         expect(response).to redirect_to root_path
@@ -172,13 +172,13 @@ RSpec.describe 'Tables', type: :request do
 
     context 'as a guest' do
       it 'returns a 302 response' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         patch table_path(@table.id), params: { table: table_params }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        table_params = FactoryBot.attributes_for(:table)
+        table_params = attributes_for(:table)
         patch table_path(@table.id), params: { table: table_params }
         expect(response).to redirect_to '/users/sign_in'
       end
