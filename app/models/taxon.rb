@@ -1,4 +1,4 @@
 class Taxon < ApplicationRecord
-  has_many :works, dependent: :destroy
   validates :name, presence: true
+  has_many :works, dependent: :destroy
 end
