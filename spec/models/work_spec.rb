@@ -49,31 +49,31 @@ RSpec.describe Work, type: :model do
   end
 
   it 'returns works with matching owner' do
-    @work1 = create(:work, user: @user, taxon: @regular_work)
-    @work2 = create(:work, user: @another_user, taxon: @regular_work)
+    work1 = create(:work, user: @user, taxon: @regular_work)
+    work2 = create(:work, user: @another_user, taxon: @regular_work)
 
-    expect(Work.owner(@user)).to include(@work1)
-    expect(Work.owner(@user)).to_not include(@work2)
-    expect(Work.owner(@another_user)).to include(@work2)
-    expect(Work.owner(@another_user)).to_not include(@work1)
+    expect(Work.owner(@user)).to include(work1)
+    expect(Work.owner(@user)).to_not include(work2)
+    expect(Work.owner(@another_user)).to include(work2)
+    expect(Work.owner(@another_user)).to_not include(work1)
   end
 
   it 'returns works with matching category' do
-    @work1 = create(:work, user: @user, taxon: @regular_work)
-    @work2 = create(:work, user: @user, taxon: @deliver_work)
+    work1 = create(:work, user: @user, taxon: @regular_work)
+    work2 = create(:work, user: @user, taxon: @deliver_work)
 
-    expect(Work.category(1)).to include(@work1)
-    expect(Work.category(1)).to_not include(@work2)
-    expect(Work.category(2)).to include(@work2)
-    expect(Work.category(2)).to_not include(@work1)
+    expect(Work.category(1)).to include(work1)
+    expect(Work.category(1)).to_not include(work2)
+    expect(Work.category(2)).to include(work2)
+    expect(Work.category(2)).to_not include(work1)
   end
 
   it 'returns works that match the search term' do
-    @work1 = create(:work, name: 'ハードな業務', user: @user, taxon: @regular_work)
-    @work2 = create(:work, name: 'イージーな業務', user: @user, taxon: @regular_work)
+    work1 = create(:work, name: 'ハードな業務', user: @user, taxon: @regular_work)
+    work2 = create(:work, name: 'イージーな業務', user: @user, taxon: @regular_work)
 
-    expect(Work.search_results('業務')).to include(@work1, @work2)
-    expect(Work.search_results('ハード')).to include(@work1)
-    expect(Work.search_results('ハード')).to_not include(@work2)
+    expect(Work.search_results('業務')).to include(work1, work2)
+    expect(Work.search_results('ハード')).to include(work1)
+    expect(Work.search_results('ハード')).to_not include(work2)
   end
 end
