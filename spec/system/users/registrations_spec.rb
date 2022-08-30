@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users::Registrations', type: :system do
   before do
-    @user = FactoryBot.create(:user)
-    @taxon = FactoryBot.create(:regular_work)
+    @user = create(:user)
+    @taxon = create(:regular_work)
   end
 
   scenario 'user registers a new account' do

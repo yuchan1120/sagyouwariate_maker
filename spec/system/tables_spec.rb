@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Tables', type: :system do
   before do
-    @user = FactoryBot.create(:user)
-    @table = FactoryBot.create(:table, user: @user)
+    @user = create(:user)
+    @table = create(:table, user: @user)
     sign_in_as @user
   end
 
