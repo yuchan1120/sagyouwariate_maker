@@ -11,7 +11,7 @@ RSpec.describe 'Users::Registrations', type: :request do
 
     describe '#create' do
       it 'adds a user' do
-        user_params = FactoryBot.attributes_for(:user)
+        user_params = attributes_for(:user)
         expect do
           post user_registration_path, params: { user: user_params }
         end.to change(User, :count).by(1)
@@ -21,7 +21,7 @@ RSpec.describe 'Users::Registrations', type: :request do
 
   describe 'after account registration' do
     before do
-      @user = FactoryBot.create(:user)
+      @user = create(:user)
     end
 
     describe '#edit' do

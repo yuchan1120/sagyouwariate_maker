@@ -4,7 +4,7 @@ class WorksController < ApplicationController
 
   def index
     @all_taxons = Taxon.all
-    @works = Work.where('user_id::text LIKE?', "#{current_user.id}")
+    @works = Work.owner(current_user).order(updated_at: 'DESC')
   end
 
   def new
@@ -41,10 +41,10 @@ class WorksController < ApplicationController
   def search
     @all_taxons = Taxon.all
     if params[:keyword].present?
-      @works = Work.where(['user_id::text like? AND name like?', "#{current_user.id}", "%#{params[:keyword]}%"])
+      @works = Work.owner(current_user).order(updated_at: 'DESC').search_results(params[:keyword])
       flash[:search_results] = "検索結果：#{@works.count}件"
     else
-      @works = Work.where('user_id::text LIKE?', "#{current_user.id}")
+      @works = Work.owner(current_user).order(updated_at: 'DESC')
       flash[:search_results] = nil
     end
     render 'index'

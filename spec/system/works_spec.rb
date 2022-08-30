@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Works', type: :system do
   before do
-    @user = FactoryBot.create(:user)
-    @taxon1 = FactoryBot.create(:regular_work)
-    @taxon2 = FactoryBot.create(:deliver_work)
-    @taxon3 = FactoryBot.create(:product_management_work)
-    @taxon4 = FactoryBot.create(:cleaning_work)
-    @work = FactoryBot.create(:work, user: @user, taxon: @taxon1)
+    @user = create(:user)
+    @taxon1 = create(:regular_work)
+    @taxon2 = create(:deliver_work)
+    @taxon3 = create(:product_management_work)
+    @taxon4 = create(:cleaning_work)
+    @work = create(:work, user: @user, taxon: @taxon1)
     sign_in_as @user
   end
 

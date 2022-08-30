@@ -2,6 +2,7 @@ ja:
   activerecord:
     attributes:
       work:
+        taxon: カテゴリ
         name: 業務名
         time_required: 所要時間
       user:
