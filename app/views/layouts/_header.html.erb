@@ -14,7 +14,7 @@
     <div id="you_are_logged_in"><span class="blue_bold"><%= current_user.name %></span>さんが<br>ログインしています。</div>
       <ul>
         <li><%= link_to "アカウント設定", edit_user_registration_path, class: "color_blue", id: "edit_user_registration", data: {"turbolinks" => false} %></li>
-        <% if current_user.email == 'guestzzz@example.com' %>
+        <% if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com" %>
           <li><%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete, class: "color_blue" %></li>
         <% else %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "color_blue", data: {"turbolinks" => false} %></li>
@@ -57,7 +57,7 @@
             <%= link_to "アカウント設定", edit_user_registration_path, data: {"turbolinks" => false} %>
           </li>
           <li class="header_menu__item_mobile">
-              <% if current_user.email == 'guestzzz@example.com' %>
+              <% if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com" %>
                 <%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete %>
               <% else %>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks" => false} %>
