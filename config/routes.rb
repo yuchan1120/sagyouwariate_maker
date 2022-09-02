@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  root 'top#index'
+  root 'top#top'
   resources :tables do
     collection do
       get 'set_sample_data'

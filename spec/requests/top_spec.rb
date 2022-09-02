@@ -5,7 +5,7 @@ RSpec.describe 'Top', type: :request do
     @user = create(:user)
   end
 
-  describe '#index' do
+  describe '#top' do
     it 'responds successfully' do
       get root_path
       expect(response).to be_successful
