@@ -8,9 +8,10 @@ class TopController < ApplicationController
   end
 
   def guest_sign_in
-    user = User.find_or_create_by!(name: 'ゲスト', email: 'guestzzz@example.com') do |user|
+    user = User.create(name: 'ゲスト', email: 'k#av92rfgagv@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
+    user.update(email: "k#av9#{user.id}2rfgagv@example.com")
     sign_in user
     create_default_works
     create_default_table
