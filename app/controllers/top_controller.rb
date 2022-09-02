@@ -1,7 +1,9 @@
 class TopController < ApplicationController
   layout 'top'
 
-  def index; end
+  def index
+    redirect_to tables_path if user_signed_in?
+  end
 
   def usage
     authenticate_user!
