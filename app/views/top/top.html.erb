@@ -3,7 +3,7 @@
     <div class="want_to_create_immediately">
       <h1 class="under_green">すぐに作成したい方</h1>
       <p>【注意】<br>　ゲストユーザーはログアウトするとデータがリセットされます。</p>
-      <%= link_to  top_guest_sign_in_path, method: :post, class:'top_link', data: {"turbolinks" => false} do %>
+      <%= link_to  guest_sign_in_path, method: :post, class:'top_link', data: {"turbolinks" => false} do %>
         <div class="create_without_user_registration_area">
           ユーザー登録なしで作成する
         </div>

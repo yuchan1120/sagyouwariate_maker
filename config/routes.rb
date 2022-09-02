@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get 'search_table' => 'tables#search'
   get 'search_work' => 'works#search'
   get 'usage' => 'top#usage'
-  post '/top/guest_sign_in', to: 'top#guest_sign_in'
+  post 'guest_sign_in' => 'top#guest_sign_in'
 end

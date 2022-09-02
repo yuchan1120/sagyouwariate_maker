@@ -38,7 +38,7 @@ RSpec.describe 'Top', type: :request do
 
   describe '#guest_sign_in' do
     it 'signs an user in as guest' do
-      post top_guest_sign_in_path
+      post guest_sign_in_path
       expect(response).to redirect_to new_table_path
     end
   end
