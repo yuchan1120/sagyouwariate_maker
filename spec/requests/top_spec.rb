@@ -5,7 +5,7 @@ RSpec.describe 'Top', type: :request do
     @user = create(:user)
   end
 
-  describe '#index' do
+  describe '#top' do
     it 'responds successfully' do
       get root_path
       expect(response).to be_successful
@@ -38,7 +38,7 @@ RSpec.describe 'Top', type: :request do
 
   describe '#guest_sign_in' do
     it 'signs an user in as guest' do
-      post top_guest_sign_in_path
+      post guest_sign_in_path
       expect(response).to redirect_to new_table_path
     end
   end

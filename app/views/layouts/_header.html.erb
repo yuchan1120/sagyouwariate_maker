@@ -6,7 +6,7 @@
   <% else %>
     <%= link_to "ログイン", new_user_session_path, class:'white_button', data: {"turbolinks" => false} %>
     <%= link_to "アカウント登録", new_user_registration_path, class:'white_button', data: {"turbolinks" => false} %>
-    <%= link_to 'ゲストログイン', top_guest_sign_in_path, method: :post, class:'white_button', data: {"turbolinks" => false} %>
+    <%= link_to 'ゲストログイン', guest_sign_in_path, method: :post, class:'white_button', data: {"turbolinks" => false} %>
   <% end %>
 </div>
 <% if user_signed_in? %>
@@ -14,7 +14,7 @@
     <div id="you_are_logged_in"><span class="blue_bold"><%= current_user.name %></span>さんが<br>ログインしています。</div>
       <ul>
         <li><%= link_to "アカウント設定", edit_user_registration_path, class: "color_blue", id: "edit_user_registration", data: {"turbolinks" => false} %></li>
-        <% if current_user.email == 'guestzzz@example.com' %>
+        <% if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com" %>
           <li><%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete, class: "color_blue" %></li>
         <% else %>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "color_blue", data: {"turbolinks" => false} %></li>
@@ -24,14 +24,16 @@
 <% end %>
 <header class="site-header">
   <div class="wrapper site-header__wrapper">
-    <div class="logo">
-      <div>
-        <%= image_tag '金槌とペンチ.jpg', class:'logo_icon' %>
+    <%= link_to root_path, data: {"turbolinks" => false} do %>
+      <div class="logo">
+        <div>
+          <%= image_tag '金槌とペンチ.jpg', class:'logo_icon' %>
+        </div>
+        <div>
+          <%= image_tag 'logo_text.jpg', class:'logo_text' %>
+        </div>
       </div>
-      <div>
-        <%= image_tag 'logo_text.jpg', class:'logo_text' %>
-      </div>
-    </div>
+    <% end %>
     <% if user_signed_in? %>
       <nav class="header_menu">
         <button class="header_menu__toggle" aria-expanded="false" type="button">
@@ -57,7 +59,7 @@
             <%= link_to "アカウント設定", edit_user_registration_path, data: {"turbolinks" => false} %>
           </li>
           <li class="header_menu__item_mobile">
-              <% if current_user.email == 'guestzzz@example.com' %>
+              <% if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com" %>
                 <%= link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete %>
               <% else %>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks" => false} %>
