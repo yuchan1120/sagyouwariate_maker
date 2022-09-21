@@ -4,7 +4,8 @@ class WorksController < ApplicationController
 
   def index
     @all_taxons = Taxon.all
-    @works = Work.owner(current_user).order(updated_at: 'DESC')
+    @works = Work.owner(current_user).order("#{sort_column} #{sort_direction}")
+    flash[:search_results] = nil
   end
 
   def new
@@ -41,13 +42,12 @@ class WorksController < ApplicationController
   def search
     @all_taxons = Taxon.all
     if params[:keyword].present?
-      @works = Work.owner(current_user).order(updated_at: 'DESC').search_results(params[:keyword])
+      @works = Work.owner(current_user).order("#{sort_column} #{sort_direction}").search_results(params[:keyword])
       flash[:search_results] = "検索結果：#{@works.count}件"
+      render 'index'
     else
-      @works = Work.owner(current_user).order(updated_at: 'DESC')
-      flash[:search_results] = nil
+      redirect_to :works
     end
-    render 'index'
   end
 
   private
@@ -59,5 +59,13 @@ class WorksController < ApplicationController
 
   def work_params
     params.require(:work).permit(:name, :time_required, :taxon_id)
+  end
+
+  def sort_column
+    params[:sort] || 'updated_at'
+  end
+
+  def sort_direction
+    params[:direction] || 'desc'
   end
 end
