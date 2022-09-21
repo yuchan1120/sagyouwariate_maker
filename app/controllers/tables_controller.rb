@@ -5,7 +5,8 @@ class TablesController < ApplicationController
   before_action :table_owner?, only: %i[show edit update destroy]
 
   def index
-    @tables = Table.owner(current_user).order(updated_at: 'DESC')
+    @tables = Table.owner(current_user).order("#{sort_column} #{sort_direction}")
+    flash[:search_results] = nil
   end
 
   def new
@@ -87,13 +88,12 @@ class TablesController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @tables = Table.owner(current_user).order(updated_at: 'DESC').search_results(params[:keyword])
+      @tables = Table.owner(current_user).order("#{sort_column} #{sort_direction}").search_results(params[:keyword])
       flash[:search_results] = "検索結果：#{@tables.count}件"
+      render 'index'
     else
-      @tables = Table.owner(current_user).order(updated_at: 'DESC')
-      flash[:search_results] = nil
+      redirect_to :tables
     end
-    render 'index'
   end
 
   private
@@ -139,5 +139,13 @@ class TablesController < ApplicationController
                                   :d66, :d67, :d68, :d69, :d70, :d71, :d72, :d73, :d74, :d75, :d76, :d77, :d78, :d79,
                                   :d80, :d81, :d82, :d83, :d84, :d85, :d86, :d87, :d88, :d89, :d90, :d91, :d92, :d93,
                                   :d94, :d95, :d96)
+  end
+
+  def sort_column
+    params[:sort] || 'updated_at'
+  end
+
+  def sort_direction
+    params[:direction] || 'desc'
   end
 end
