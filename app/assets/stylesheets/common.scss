@@ -594,6 +594,21 @@ table td {
     table-layout: fixed;
     width: 100%;
   }
+
+  thead {
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .non_target {
+      color: blue;
+    }
+    .target {
+      color: green;
+    }
+  }
 }
 
 //shared/search_results
@@ -676,6 +691,21 @@ table td {
   @media (max-width: 759px) {
     table-layout: fixed;
     width: 100%;
+  }
+
+  thead {
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .non_target {
+      color: blue;
+    }
+    .target {
+      color: green;
+    }
   }
 }
 
