@@ -4,9 +4,6 @@ Rails.application.routes.draw do
   }
   root 'top#top'
   resources :tables do
-    collection do
-      get 'set_sample_data'
-    end
     member do
       get 'clone'
     end
