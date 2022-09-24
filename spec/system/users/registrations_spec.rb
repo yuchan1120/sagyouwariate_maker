@@ -4,6 +4,8 @@ RSpec.describe 'Users::Registrations', type: :system do
   before do
     @user = create(:user)
     @taxon = create(:regular_work)
+    janitor = create(:janitor)
+    create(:sample_table, user: janitor)
   end
 
   scenario 'user registers a new account' do
