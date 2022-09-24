@@ -6,6 +6,7 @@ RSpec.describe 'Users::Registrations', type: :system do
     @taxon = create(:regular_work)
     janitor = create(:janitor)
     create(:sample_table, user: janitor)
+    create(:sample_work, user: janitor, taxon: @taxon)
   end
 
   scenario 'user registers a new account' do
@@ -24,7 +25,7 @@ RSpec.describe 'Users::Registrations', type: :system do
 
       find('#header_menu_work_index').click
 
-      expect(page).to have_content '仮点検'
+      expect(page).to have_content 'サンプルワーク'
     end.to change(User, :count).by(1)
   end
 
