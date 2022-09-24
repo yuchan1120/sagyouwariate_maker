@@ -2,11 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Users::Registrations', type: :request do
   describe 'before account registration' do
-    before do
-      janitor = create(:janitor)
-      create(:sample_table, user: janitor)
-    end
-
     describe '#new' do
       it 'responds successfully' do
         get new_user_registration_path
