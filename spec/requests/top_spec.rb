@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Top', type: :request do
   before do
     @user = create(:user)
-    janitor = create(:janitor)
-    create(:sample_table, user: janitor)
   end
 
   describe '#top' do

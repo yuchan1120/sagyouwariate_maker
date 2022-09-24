@@ -45,12 +45,23 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/tables_controller.rb'
+    - 'app/controllers/top_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/controllers/tables_controller.rb'
+    - 'app/controllers/top_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+
 Metrics/AbcSize:
   Max: 20
+  Exclude:
+    - 'app/controllers/top_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
 
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
-
-Layout/LineLength:
-  Exclude:
-    - 'db/seeds.rb'

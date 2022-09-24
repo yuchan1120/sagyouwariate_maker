@@ -10,10 +10,4 @@ FactoryBot.define do
     email { 'jirou@example.com' }
     password { '@jirou' }
   end
-
-  factory :janitor, class: User do
-    name { '管理人' }
-    email { 'janitor@example.com' }
-    password { 'janitor' }
-  end
 end
