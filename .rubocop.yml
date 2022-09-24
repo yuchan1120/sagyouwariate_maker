@@ -65,3 +65,7 @@ Metrics/AbcSize:
 
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - 'db/seeds.rb'

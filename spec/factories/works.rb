@@ -7,4 +7,10 @@ FactoryBot.define do
       name { nil }
     end
   end
+
+  factory :sample_work, class: Work do
+    name { 'サンプルワーク' }
+    time_required { '10' }
+    default_data { true }
+  end
 end
