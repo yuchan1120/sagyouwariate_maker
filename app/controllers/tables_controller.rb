@@ -1,9 +1,4 @@
 class TablesController < ApplicationController
-  TABLE_INITIAL_VALUE = Table.new(
-    a5: '温度点検　(10分)', a21: '鮮度管理　(15分)', a33: '鮮度管理　(15分)', a53: '鮮度管理　(15分)', a69: '鮮度管理　(15分)',
-    a73: 'ストアスタンプ日付変更　(2分)', a77: '深夜鮮度管理　(45分)', a93: '温度管理　(10分)'
-  )
-
   layout 'tables_show', only: :show
   before_action :authenticate_user!
   before_action :set_each_works, only: %i[new edit]
