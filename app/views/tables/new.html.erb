@@ -4,45 +4,12 @@
   </div>
   <div class="vertically_aligned_and_centered">
     <div class="sample_data_link_area">
-      <%= link_to "サンプルデータを呼び出す", set_sample_data_tables_path, class: "green_button", id: "set_sample_data_tables", data: {"turbolinks" => false} %>
+      <%= link_to "サンプルデータを呼び出す", { call_sample: true }, class: "green_button", id: "set_sample_data_tables", data: {"turbolinks" => false} %>
     </div>
     <h2>新規作成</h2>
     <h3 class="margin_top_0">
       <%= f.label :title ,"タイトル" %>：<%= f.text_field :title %>　<%= f.submit "保存", id: "submit_save" %>
     </h3>
   </div>
-  <div class="centered">
-    <table class="sagyouwariate">
-      <thead>
-        <tr>
-          <th>時間</th>
-          <th>定時業務</th>
-          <th>納品業務</th>
-          <th>商品管理業務</th>
-          <th>清掃業務</th>
-        </tr>
-      </thead>
-        <tbody>
-          <% 96.times do |num|%>
-            <tr>
-              <td>
-                <%= render 'tables/row_time', num: num %>
-              </td>
-              <td>
-                <%= render 'tables/row_regular_work', num: num, f: f %>
-              </td>
-              <td>
-                <%= render 'tables/row_deliver_work', num: num, f: f %>
-              </td>
-              <td>
-                <%= render 'tables/row_product_management_work', num: num, f: f %>
-              </td>
-              <td>
-                <%= render 'tables/row_cleaning_work', num: num, f: f %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-  </div>
+  <%= render 'tables/form', f: f %>
 <% end %>
