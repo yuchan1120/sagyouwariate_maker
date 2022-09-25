@@ -9,58 +9,5 @@
     </h3>
   </div>
   </div>
-  <div class="centered">
-    <table class="sagyouwariate">
-      <thead>
-        <tr>
-          <th>時間</th>
-          <th>定時業務</th>
-          <th>納品業務</th>
-          <th>商品管理業務</th>
-          <th>清掃業務</th>
-        </tr>
-      </thead>
-        <tbody>
-          <% 96.times do |num|%>
-            <tr>
-              <td>
-                <%= render 'tables/row_time', num: num %>
-              </td>
-              <td>
-                <%= f.text_field "a#{num + 1}".to_sym, list: "regular_work", class: "text_field" %>
-                <datalist id="regular_work">
-                  <% @regular_works.each do |regular_work| %>
-                    <option value="<%= regular_work.name %>　(<%= regular_work.time_required %>分)">
-                  <% end %>
-                </datalist>
-              </td>
-              <td>
-                <%= f.text_field "b#{num + 1}".to_sym, list: "deliver_work", class: "text_field" %>
-                <datalist id="deliver_work">
-                  <% @deliver_works.each do |deliver_work| %>
-                    <option value="<%= deliver_work.name %>　(<%= deliver_work.time_required %>分)">
-                  <% end %>
-                </datalist>
-              </td>
-              <td>
-                <%= f.text_field "c#{num + 1}".to_sym, list: "product_management_work", class: "text_field" %>
-                <datalist id="product_management_work">
-                  <% @product_management_works.each do |product_management_work| %>
-                    <option value="<%= product_management_work.name %>　(<%= product_management_work.time_required %>分)">
-                  <% end %>
-                </datalist>
-              </td>
-              <td>
-                <%= f.text_field "d#{num + 1}".to_sym, list: "cleaning_work", class: "text_field" %>
-                <datalist id="cleaning_work">
-                  <% @cleaning_works.each do |cleaning_work| %>
-                    <option value="<%= cleaning_work.name %>　(<%= cleaning_work.time_required %>分)">
-                  <% end %>
-                </datalist>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-  </div>
+  <%= render 'tables/form', f: f %>
 <% end %>
