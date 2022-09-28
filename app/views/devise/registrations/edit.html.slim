@@ -1,0 +1,55 @@
+.page_header_margin_bottom_50px
+  h1.page_title
+    | アカウント設定
+.centered
+  = render "devise/shared/error_messages", resource: resource
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  .centered
+    table
+      tr
+        th
+          = f.label :name ,"ユーザー名"
+        td
+          = f.text_field :name, autofocus: true
+      tr
+        th
+          = f.label :email ,"メールアドレス"
+        td
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+      tr
+        th
+          = f.label :password
+          br
+          span.fine_print
+            | ※変更したくない場合は
+            br
+            | 空白のままにしてください
+        td
+          = f.password_field :password, autocomplete: "new-password"
+          br
+          - if @minimum_password_length
+            |  (
+            = @minimum_password_length
+            | 文字以上) 
+      tr
+        th
+          = f.label :password_confirmation ,"パスワード（確認用）"
+        td
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+      tr
+        th
+          = f.label :current_password
+          br
+          span.fine_print
+            | ※変更を確認するには
+            br
+            | 現在のパスワードが必要です
+        td
+          = f.password_field :current_password, autocomplete: "current-password"
+  .form_bottom
+    a[href="javascript:history.back()"]
+      | キャンセル
+    | 　　
+    = f.submit "更新", id:'submit_update'
+.centered
+  = link_to "アカウント削除", registration_path(resource_name), data: { confirm: "アカウントのすべてのデータが失われます。本当によろしいですか？", "turbolinks" => false }, method: :delete, id: 'delete_account'
