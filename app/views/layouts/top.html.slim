@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | SagyouwariateMaker
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = favicon_link_tag('金槌とペンチ.jpg')
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  body
+    - if user_signed_in?
+      = render 'layouts/header'
+    - else
+      = render 'layouts/no_header'
+    = yield
+    footer.footer
+      p
+        | ©️2022 miura
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'

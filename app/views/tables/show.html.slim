@@ -1,0 +1,34 @@
+.upper_right
+  = link_to "戻る", tables_path, class:'green_button_print_hidden', data: {"turbolinks" => false}
+  a.green_button_print_hidden[onclick="window.print();"]
+    | 印刷
+.page_header_margin_bottom_20px
+  h1.page_title
+    = @table.title
+.centered
+  table.sagyouwariate
+    thead
+      tr
+        th
+          | 時間
+        th
+          | 定時業務
+        th
+          | 納品業務
+        th
+          | 商品管理業務
+        th
+          | 清掃業務
+    tbody
+      - 96.times do |num|
+        tr
+          td
+            = render 'tables/row_time', num: num
+          td
+            = @table.send("a#{num + 1}")
+          td
+            = @table.send("b#{num + 1}")
+          td
+            = @table.send("c#{num + 1}")
+          td
+            = @table.send("d#{num + 1}")

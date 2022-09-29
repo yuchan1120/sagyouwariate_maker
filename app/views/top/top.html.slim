@@ -1,0 +1,34 @@
+- unless user_signed_in?
+  .side_by_side
+    .want_to_create_immediately
+      h1.under_green
+        | すぐに作成したい方
+      p
+        | 【注意】
+        br
+        | 　ゲストユーザーはログアウトするとデータがリセットされます。
+      = link_to  guest_sign_in_path, method: :post, class:'top_link', data: {"turbolinks" => false} do
+        .create_without_user_registration_area
+          |  ユーザー登録なしで作成する 
+    .to_members
+      h1.under_orange
+        | 会員の方
+      .side_by_side
+        = link_to new_user_session_path, class:'top_link', data: {"turbolinks" => false} do
+          .guidance_sign_in_area
+            |  ログインする 
+        = link_to new_user_registration_path, class:'top_link', data: {"turbolinks" => false} do
+          .guidance_sign_up_area
+            |  ユーザー登録する 
+.vertically_aligned_and_centered
+  h1.gist_green
+    | カンタン作業登録で作業割当をスピード作成！
+  = image_tag 'easy_registration.jpg', class: 'top_image'
+.vertically_aligned_and_centered
+  h1.gist_green
+    | 更新も簡単！適正な人員配置を常に実現！
+  = image_tag 'speed_update.jpg', class: 'top_image'
+.vertically_aligned_and_centered
+  h1.gist_orange
+    | もう残業なんてさせません！！
+  = image_tag 'at_the_end.jpg', class: 'top_image_last'

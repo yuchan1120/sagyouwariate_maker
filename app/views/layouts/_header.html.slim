@@ -1,0 +1,56 @@
+.login_link_area
+  - if user_signed_in?
+    #user_menu_link
+      |  ユーザーメニュー ▼ 
+  - else
+    = link_to "ログイン", new_user_session_path, class:'white_button', data: {"turbolinks" => false}
+    = link_to "アカウント登録", new_user_registration_path, class:'white_button', data: {"turbolinks" => false}
+    = link_to 'ゲストログイン', guest_sign_in_path, method: :post, class:'white_button', data: {"turbolinks" => false}
+- if user_signed_in?
+  nav#user_menu
+    #you_are_logged_in
+      span.blue_bold
+        = current_user.name
+      | さんが
+      br
+      | ログインしています。
+    ul
+      li
+        = link_to "アカウント設定", edit_user_registration_path, class: "color_blue", id: "edit_user_registration", data: {"turbolinks" => false}
+      - if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com"
+        li
+          = link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete, class: "color_blue"
+      - else
+        li
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "color_blue", data: {"turbolinks" => false}
+header.site-header
+  .wrapper.site-header__wrapper
+    = link_to root_path, data: {"turbolinks" => false} do
+      .logo
+        div
+          = image_tag '金槌とペンチ.jpg', class:'logo_icon'
+        div
+          = image_tag 'logo_text.jpg', class:'logo_text'
+    - if user_signed_in?
+      nav.header_menu
+        button.header_menu__toggle[aria-expanded="false" type="button"]
+          |  menu 
+        ul.header_menu__wrapper
+          li.header_menu__item
+            = link_to "操作ガイド", usage_path, data: {"turbolinks" => false}
+          li.header_menu__item
+            = link_to "新規作成", new_table_path, id:'header_menu_create_new', data: {"turbolinks" => false}
+          li.header_menu__item
+            = link_to "作業割当一覧", tables_path, id:'header_menu_table_index', data: {"turbolinks" => false}
+          li.header_menu__item
+            = link_to "業務登録", new_work_path, id:'header_menu_work_registration', data: {"turbolinks" => false}
+          li.header_menu__item
+            = link_to "業務一覧", works_path, id:'header_menu_work_index', data: {"turbolinks" => false}
+          li.header_menu__item_mobile
+            = link_to "アカウント設定", edit_user_registration_path, data: {"turbolinks" => false}
+          li.header_menu__item_mobile
+            - if current_user.email == "k#av9#{current_user.id}2rfgagv@example.com"
+              = link_to "ログアウト", registration_path(current_user), data: { confirm: "【注意】ゲストユーザーはログアウトするとデータがリセットされます！", "turbolinks" => false }, method: :delete
+            - else
+              = link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks" => false}
+    = render 'layouts/flash_message'

@@ -1,0 +1,50 @@
+.page_header_margin_bottom_50px
+  h1.page_title
+    | 作業割当
+= render 'shared/search_results'
+.search_form
+  = form_with url: search_table_path, method: :get, local: true do |f|
+    = f.text_field :keyword, placeholder: "キーワードを入力"
+    = f.submit :検索, id: "commit_search"
+.centered
+  p
+    |  ※印刷したい場合は詳細ページに移動し、右上の「印刷」リンクをクリックしてください。 
+.centered
+  table.table_index
+    thead
+      tr
+        th
+          = sort_order "id", "id"
+        th
+          = sort_order "title", "タイトル"
+        th
+          = sort_order "updated_at", "更新日"
+        th
+          = sort_order "created_at", "作成日"
+        th
+          | 詳細
+        th
+          | 編集
+        th
+          | 複製
+        th
+          | 削除
+    tbody
+      - @tables.each do |table|
+        tr
+          td
+            = table.id
+          td
+            = table.title
+          td
+            = table.updated_at.to_s(:datetime_jp)
+          td
+            = table.created_at.to_s(:datetime_jp)
+          td
+            = link_to "詳細", table_path(table.id), class: "color_blue", id: "show_table_#{table.id}", data: {"turbolinks" => false}
+          td
+            = link_to "編集", edit_table_path(table.id), class: "color_blue", id: "edit_table_#{table.id}", data: {"turbolinks" => false}
+          td
+            = link_to "複製", clone_table_path(table.id), class: "color_blue", id: "clone_table_#{table.id}", data: {"turbolinks" => false}
+          td
+            = link_to "削除", table_path(table.id), method: :delete, data: { confirm: "本当に削除しますか？", "turbolinks" => false }, class: "color_blue", id: "delete_table_#{table.id}"

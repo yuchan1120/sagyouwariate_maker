@@ -1,0 +1,6 @@
+.validation_error_message_area
+  - if obj.errors.any?
+    - obj.errors.full_messages.each do |message|
+      ul.validation_error_message
+        li
+          = message

@@ -1,0 +1,12 @@
+#side_bar
+  .side_bar_title
+    | カテゴリ
+  .side_bar_link
+    ul
+      li
+        = link_to works_path, data: {"turbolinks" => false} do
+          |  全業務 
+      - taxons.each do |taxon|
+        li
+          = link_to taxon_path(taxon.id), id: "taxon_#{taxon.id}", data: {"turbolinks" => false} do
+            = taxon.name
