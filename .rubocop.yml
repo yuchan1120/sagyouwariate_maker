@@ -58,3 +58,6 @@ Lint/ShadowingOuterLocalVariable:
 Layout/LineLength:
   Exclude:
     - 'db/seeds.rb'
+
+Bundler/OrderedGems:
+  Enabled: false
