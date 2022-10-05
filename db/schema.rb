@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_24_191033) do
+ActiveRecord::Schema.define(version: 2022_10_05_055255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -405,6 +405,7 @@ ActiveRecord::Schema.define(version: 2022_09_24_191033) do
     t.string "title"
     t.integer "user_id"
     t.boolean "default_data", default: false, null: false
+    t.string "cells", default: [], array: true
   end
 
   create_table "taxons", force: :cascade do |t|

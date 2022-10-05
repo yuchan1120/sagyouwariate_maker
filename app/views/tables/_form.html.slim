@@ -1,7 +1,85 @@
+javascript:
+  function insertRow(target) {
+    let elements = document.getElementsByTagName( "tr" ) ;
+
+    const element = target.parentNode.parentNode;
+
+    elements = [].slice.call( elements ) ;
+
+    const index = elements.indexOf( element ) ;
+
+    const table = document.getElementById('sample1_table');
+
+    const row = table.insertRow(index + 1);
+
+    const cell1 = row.insertCell(-1);
+    const cell2 = row.insertCell(-1);
+    const cell3 = row.insertCell(-1);
+    const cell4 = row.insertCell(-1);
+    const cell5 = row.insertCell(-1);
+    const cell6 = row.insertCell(-1);
+    const cell7 = row.insertCell(-1);
+
+    const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" />';
+    const delete_button = '<input type="button" value="行削除" onclick="deleteRow(this)" />';
+
+    const row_len = table.rows.length;
+
+    const input_time = document.createElement("input");
+    input_time.setAttribute("type", "text");
+    input_time.setAttribute("class", "cell");
+
+    const input_regular_work = document.createElement("input");
+    input_regular_work.setAttribute("list", "regular_work");
+    input_regular_work.setAttribute("type", "text");
+    input_regular_work.setAttribute("class", "cell");
+
+    const input_deliver_work = document.createElement("input");
+    input_deliver_work.setAttribute("list", "deliver_work");
+    input_deliver_work.setAttribute("type", "text");
+    input_deliver_work.setAttribute("class", "cell");
+
+    const input_product_management_work = document.createElement("input");
+    input_product_management_work.setAttribute("list", "product_management_work");
+    input_product_management_work.setAttribute("type", "text");
+    input_product_management_work.setAttribute("class", "cell");
+
+    const input_cleaning_work = document.createElement("input");
+    input_cleaning_work.setAttribute("list", "cleaning_work");
+    input_cleaning_work.setAttribute("type", "text");
+    input_cleaning_work.setAttribute("class", "cell");
+
+    cell1.innerHTML = add_button;
+    cell2.innerHTML = delete_button;
+    cell3.appendChild(input_time);
+    cell4.appendChild(input_regular_work);
+    cell5.appendChild(input_deliver_work);
+    cell6.appendChild(input_product_management_work);
+    cell7.appendChild(input_cleaning_work);
+
+    let cells = document.getElementsByClassName( "cell" ) ;
+    console.log(cells);
+    cells = [].slice.call( cells ) ;
+    cells.forEach((cell, index) => {
+        cell.setAttribute("id", "cell" + index);
+        cell.setAttribute("name", "cell" + index);
+    });
+    const cells_length = document.getElementById('cells_length');
+    cells_length.setAttribute("value", cells.length);
+  }
+
+  function deleteRow(obj) {
+      tr = obj.parentNode.parentNode;
+
+      tr.parentNode.deleteRow(tr.sectionRowIndex);
+  }
+
 .centered
-  table.sagyouwariate
+  table.sagyouwariate#sample1_table
     thead
       tr
+        th
+        th
         th
           | 時間
         th
@@ -13,43 +91,46 @@
         th
           | 清掃業務
     tbody
-      - 96.times do |num|
-        tr
-          td
-            = render 'tables/row_time', num: num
-          td
-            = f.text_field "a#{num + 1}".to_sym, list: "regular_work", class: "text_field"
-            datalist#regular_work
-              - @regular_works.each do |regular_work|
-                |  <option value="
-                = regular_work.name
-                | 　(
-                = regular_work.time_required
-                | 分)"> 
-          td
-            = f.text_field "b#{num + 1}".to_sym, list: "deliver_work", class: "text_field"
-            datalist#deliver_work
-              - @deliver_works.each do |deliver_work|
-                |  <option value="
-                = deliver_work.name
-                | 　(
-                = deliver_work.time_required
-                | 分)"> 
-          td
-            = f.text_field "c#{num + 1}".to_sym, list: "product_management_work", class: "text_field"
-            datalist#product_management_work
-              - @product_management_works.each do |product_management_work|
-                |  <option value="
-                = product_management_work.name
-                | 　(
-                = product_management_work.time_required
-                | 分)"> 
-          td
-            = f.text_field "d#{num + 1}".to_sym, list: "cleaning_work", class: "text_field"
-            datalist#cleaning_work
-              - @cleaning_works.each do |cleaning_work|
-                |  <option value="
-                = cleaning_work.name
-                | 　(
-                = cleaning_work.time_required
-                | 分)"> 
+      tr
+        td
+          input type="button" value="下に1行挿入" onclick="insertRow(this)"
+        td
+          input type="button" value="行削除" onclick="deleteRow(this)"
+        td
+          = f.text_field :cell0, class: "cell"
+        td
+          = f.text_field :cell1, list: "regular_work", class: "cell"
+          datalist#regular_work
+            - @regular_works.each do |regular_work|
+              |  <option value="
+              = regular_work.name
+              | 　(
+              = regular_work.time_required
+              | 分)">
+        td
+          = f.text_field :cell2, list: "deliver_work", class: "cell"
+          datalist#deliver_work
+            - @deliver_works.each do |deliver_work|
+              |  <option value="
+              = deliver_work.name
+              | 　(
+              = deliver_work.time_required
+              | 分)">
+        td
+          = f.text_field :cell3, list: "product_management_work", class: "cell"
+          datalist#product_management_work
+            - @product_management_works.each do |product_management_work|
+              |  <option value="
+              = product_management_work.name
+              | 　(
+              = product_management_work.time_required
+              | 分)">
+        td
+          = f.text_field :cell4, list: "cleaning_work", class: "cell"
+          datalist#cleaning_work
+            - @cleaning_works.each do |cleaning_work|
+              |  <option value="
+              = cleaning_work.name
+              | 　(
+              = cleaning_work.time_required
+              | 分)">

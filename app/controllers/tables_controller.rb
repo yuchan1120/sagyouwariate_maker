@@ -46,7 +46,12 @@ class TablesController < ApplicationController
   end
 
   def create
-    @table = current_user.tables.new(table_params)
+    cells_length = params[:cells_length].to_i
+    params_cells = []
+    cells_length.times do |num|
+      params_cells.push(params["cell#{num}"])
+    end
+    @table = current_user.tables.new(title: params[:title], cells: params_cells)
     if @table.save
       flash[:notice] = '作業割当を新規登録しました'
       redirect_to :tables
