@@ -1,0 +1,35 @@
+.centered
+  table.works_index
+    thead
+      tr
+        th
+          = sort_order "id", "id"
+        th
+          = sort_order "name", "業務名"
+        th
+          = sort_order "time_required", "所要時間（分）"
+        th
+          | カテゴリ
+        th
+          = sort_order "updated_at", "更新日"
+        th
+          | 編集
+        th
+          | 削除
+    tbody
+      - works.each do |work|
+        tr
+          td
+            = work.id
+          td
+            = work.name
+          td
+            = work.time_required
+          td
+            = work.taxon.name
+          td
+            = work.updated_at.to_s(:datetime_jp_short)
+          td
+            = link_to "編集", edit_work_path(work.id), class: "color_blue", id: "edit_work_#{work.id}", data: {"turbolinks" => false}
+          td
+            = link_to "削除", work_path(work.id), method: :delete, data: { confirm: "本当に削除しますか？", "turbolinks" => false }, class: "color_blue", id: "delete_work_#{work.id}"

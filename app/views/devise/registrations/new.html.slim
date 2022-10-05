@@ -1,0 +1,36 @@
+.page_header_margin_bottom_50px
+  h1.page_title
+    | アカウント登録
+.centered
+  = render "devise/shared/error_messages", resource: resource
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .centered
+    table
+      tr
+        th
+          = f.label :name ,"ユーザー名"
+        td
+          = f.text_field :name, autofocus: true
+      tr
+        th
+          = f.label :email ,"メールアドレス"
+        td
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+      tr
+        th
+          = f.label :password ,"パスワード"
+          - if @minimum_password_length
+            |  (
+            = @minimum_password_length
+            | 文字以上) 
+        td
+          = f.password_field :password, autocomplete: "new-password"
+      tr
+        th
+          = f.label :password_confirmation ,"パスワード（確認用）"
+        td
+          = f.password_field :password_confirmation, autocomplete: "new-password"
+  .form_bottom
+    = f.submit "登録", id: "submit_registration"
+    |  　
+    = link_to "ログイン", new_session_path(resource_name), class: "color_blue", data: {"turbolinks" => false}

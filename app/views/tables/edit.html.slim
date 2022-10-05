@@ -1,0 +1,14 @@
+= form_with model: @table do |f|
+  .page_header_margin_bottom_20px
+    h1.page_title
+      | 作業割当
+  .vertically_aligned_and_centered
+    h2
+      | 編集
+    h3.margin_top_0
+      = f.label :name ,"タイトル"
+      | ：
+      = f.text_field :title
+      | 　
+      = f.submit "保存", id: "submit_save"
+  = render 'tables/form', f: f

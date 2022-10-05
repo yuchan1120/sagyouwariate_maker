@@ -1,0 +1,8 @@
+.page_header_margin_bottom_20px
+  h1.page_title
+    | 業務
+.vertically_aligned_and_centered
+  h2
+    | 新規登録
+  = render "shared/error", obj: @work
+= render 'works/registration_form', work:@work
