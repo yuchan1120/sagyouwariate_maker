@@ -23,8 +23,6 @@ javascript:
     const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" />';
     const delete_button = '<input type="button" value="行削除" onclick="deleteRow(this)" />';
 
-    const row_len = table.rows.length;
-
     const input_time = document.createElement("input");
     input_time.setAttribute("type", "text");
     input_time.setAttribute("class", "cell");
@@ -58,7 +56,6 @@ javascript:
     cell7.appendChild(input_cleaning_work);
 
     let cells = document.getElementsByClassName( "cell" ) ;
-    console.log(cells);
     cells = [].slice.call( cells ) ;
     cells.forEach((cell, index) => {
         cell.setAttribute("id", "cell" + index);
