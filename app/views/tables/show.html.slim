@@ -20,15 +20,15 @@
         th
           | 清掃業務
     tbody
-      - 96.times do |num|
+      - @rows.each do |row|
         tr
           td
-            = render 'tables/row_time', num: num
+            = row[0]
           td
-            = @table.send("a#{num + 1}")
+            = row[1]
           td
-            = @table.send("b#{num + 1}")
+            = row[2]
           td
-            = @table.send("c#{num + 1}")
+            = row[3]
           td
-            = @table.send("d#{num + 1}")
+            = row[4]

@@ -60,7 +60,9 @@ class TablesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @rows = @table.cells.each_slice(5).to_a
+  end
 
   def edit; end
 
