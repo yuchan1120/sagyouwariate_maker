@@ -18,6 +18,20 @@ RSpec.describe 'Tables', type: :system do
     end.to change(@user.tables, :count).by(1)
   end
 
+  scenario '削除した行は保存しない', js: true do
+    visit new_table_path
+
+    find('#insert_row').click
+    fill_in 'cell0', with: '１行目'
+    fill_in 'cell5', with: '２行目'
+    find('#delete_button_2').click
+    find('#submit_save').click
+    all('tbody tr')[0].click_link '詳細'
+
+    expect(page).to have_content '１行目'
+    expect(page).to_not have_content '２行目'
+  end
+
   scenario 'user calls sample data' do
     visit new_table_path
 

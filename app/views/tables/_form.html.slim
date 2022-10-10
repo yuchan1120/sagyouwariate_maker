@@ -21,7 +21,7 @@ javascript:
     const cell7 = row.insertCell(-1);
 
     const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" />';
-    const delete_button = '<input type="button" value="行削除" onclick="deleteRow(this)" />';
+    const delete_button = `<input type="button" value="行削除" onclick="deleteRow(this)" id="delete_button_${index + 1}" />`;
 
     const input_time = document.createElement("input");
     input_time.setAttribute("type", "text");
@@ -55,6 +55,18 @@ javascript:
     cell6.appendChild(input_product_management_work);
     cell7.appendChild(input_cleaning_work);
 
+    setId();
+  }
+
+  function deleteRow(obj) {
+      tr = obj.parentNode.parentNode;
+
+      tr.parentNode.deleteRow(tr.sectionRowIndex);
+
+      setId();
+  }
+
+  function setId() {
     let cells = document.getElementsByClassName( "cell" ) ;
     cells = [].slice.call( cells ) ;
     cells.forEach((cell, index) => {
@@ -63,12 +75,6 @@ javascript:
     });
     const cells_length = document.getElementById('cells_length');
     cells_length.setAttribute("value", cells.length);
-  }
-
-  function deleteRow(obj) {
-      tr = obj.parentNode.parentNode;
-
-      tr.parentNode.deleteRow(tr.sectionRowIndex);
   }
 
 .centered
@@ -90,7 +96,7 @@ javascript:
     tbody
       tr
         td
-          input type="button" value="下に1行挿入" onclick="insertRow(this)"
+          input type="button" value="下に1行挿入" onclick="insertRow(this)" id="insert_row"
         td
           input type="button" value="行削除" onclick="deleteRow(this)"
         td
