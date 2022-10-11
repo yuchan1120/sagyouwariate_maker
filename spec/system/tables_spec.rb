@@ -10,7 +10,7 @@ RSpec.describe 'Tables', type: :system do
   scenario 'user creates a new table' do
     expect do
       find('#header_menu_create_new').click
-      fill_in 'table[title]', with: 'Test'
+      fill_in 'title', with: 'Test'
       find('#submit_save').click
 
       expect(page).to have_content '作業割当を新規登録しました'
