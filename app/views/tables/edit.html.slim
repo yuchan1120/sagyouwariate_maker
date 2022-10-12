@@ -1,4 +1,4 @@
-= form_with model: @table do |f|
+= form_with url: table_path( @table), method: :patch, local: true do |f|
   .page_header_margin_bottom_20px
     h1.page_title
       | 作業割当
@@ -8,7 +8,9 @@
     h3.margin_top_0
       = f.label :name ,"タイトル"
       | ：
-      = f.text_field :title
+      = f.text_field :title, value: @table.title
       | 　
+      = f.hidden_field :cells_length, value: @table.size * 5
+      = f.hidden_field :table_size, value: @table.size
       = f.submit "保存", id: "submit_save"
-  = render 'tables/form', f: f
+  = render 'tables/edit_form', f: f, table: @table

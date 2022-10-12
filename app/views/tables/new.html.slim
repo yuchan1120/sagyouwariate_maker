@@ -13,5 +13,6 @@
       = f.text_field :title
       | 　
       = f.hidden_field :cells_length, value: 5
+      = f.hidden_field :table_size, value: 1
       = f.submit "保存", id: "submit_save"
   = render 'tables/form', f: f

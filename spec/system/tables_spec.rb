@@ -32,6 +32,17 @@ RSpec.describe 'Tables', type: :system do
     expect(page).to_not have_content '２行目'
   end
 
+  scenario '新規作成時に追加した行を編集することができる', js: true do
+    visit new_table_path
+
+    find('#insert_row').click
+    fill_in 'cell5', with: '２行目'
+    find('#submit_save').click
+    all('tbody tr')[0].click_link '編集'
+
+    expect(page).to have_xpath "//input[@value='２行目' and @name='cell5']"
+  end
+
   scenario 'user calls sample data' do
     visit new_table_path
 
@@ -51,11 +62,22 @@ RSpec.describe 'Tables', type: :system do
   scenario 'user updates a table' do
     find('#header_menu_table_index').click
     find("#edit_table_#{@table.id}").click
-    fill_in 'table[title]', with: 'New Table Name'
+    fill_in 'title', with: 'New Table Name'
     find('#submit_save').click
 
     expect(page).to have_content "IDが「#{@table.id}」の作業割当を更新しました"
     expect(page).to have_content 'New Table Name'
+  end
+
+  scenario '編集画面で行の追加ができる', js: true do
+    visit edit_table_path(@table)
+
+    find('#insert_row').click
+    fill_in 'cell5', with: '２行目'
+    find('#submit_save').click
+    all('tbody tr')[0].click_link '詳細'
+
+    expect(page).to have_content '２行目'
   end
 
   scenario 'user clones a table' do

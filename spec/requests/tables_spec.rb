@@ -54,31 +54,27 @@ RSpec.describe 'Tables', type: :request do
   describe '#create' do
     context 'as an authorized user' do
       it 'adds a table' do
-        table_params = attributes_for(:table)
         sign_in @user
         expect do
-          post tables_path, params: { table: table_params }
+          post tables_path, params: { table_size: 1 }
         end.to change(@user.tables, :count).by(1)
       end
     end
 
     context 'as a guest' do
       it 'does not adds a table' do
-        table_params = attributes_for(:table)
         expect do
-          post tables_path, params: { table: table_params }
+          post tables_path, params: { table_size: 1 }
         end.to_not change(Table, :count)
       end
 
       it 'returns a 302 response' do
-        table_params = attributes_for(:table)
-        post tables_path, params: { table: table_params }
+        post tables_path, params: { table_size: 1 }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        table_params = attributes_for(:table)
-        post tables_path, params: { table: table_params }
+        post tables_path, params: { table_size: 1 }
         expect(response).to redirect_to '/users/sign_in'
       end
     end
@@ -147,39 +143,34 @@ RSpec.describe 'Tables', type: :request do
   describe '#update' do
     context 'as an authorized user' do
       it 'updates a table' do
-        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @user
-        patch table_path(@table.id), params: { table: table_params }
+        patch table_path(@table.id), params: { title: 'New Table Name', table_size: 1 }
         expect(@table.reload.title).to eq 'New Table Name'
       end
     end
 
     context 'as an unauthorized user' do
       it 'does not update the table' do
-        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @another_user
-        patch table_path(@table.id), params: { table: table_params }
+        patch table_path(@table.id), params: { title: 'New Table Name', table_size: 1 }
         expect(@table.reload.title).to eq '新しい作業割当'
       end
 
       it 'redirects the page to root_path' do
-        table_params = attributes_for(:table, title: 'New Table Name')
         sign_in @another_user
-        patch table_path(@table.id), params: { table: table_params }
+        patch table_path(@table.id), params: { title: 'New Table Name', table_size: 1 }
         expect(response).to redirect_to root_path
       end
     end
 
     context 'as a guest' do
       it 'returns a 302 response' do
-        table_params = attributes_for(:table)
-        patch table_path(@table.id), params: { table: table_params }
+        patch table_path(@table.id), params: { title: 'New Table Name', table_size: 1 }
         expect(response).to have_http_status '302'
       end
 
       it 'redirects to the sign-in page' do
-        table_params = attributes_for(:table)
-        patch table_path(@table.id), params: { table: table_params }
+        patch table_path(@table.id), params: { title: 'New Table Name', table_size: 1 }
         expect(response).to redirect_to '/users/sign_in'
       end
     end

@@ -51,7 +51,7 @@ class TablesController < ApplicationController
     cells_length.times do |num|
       params_cells.push(params["cell#{num}"])
     end
-    @table = current_user.tables.new(title: params[:title], cells: params_cells)
+    @table = current_user.tables.new(title: params[:title], cells: params_cells, size: params[:table_size])
     if @table.save
       flash[:notice] = '作業割当を新規登録しました'
       redirect_to :tables
@@ -67,7 +67,12 @@ class TablesController < ApplicationController
   def edit; end
 
   def update
-    if @table.update(table_params)
+    cells_length = params[:cells_length].to_i
+    params_cells = []
+    cells_length.times do |num|
+      params_cells.push(params["cell#{num}"])
+    end
+    if @table.update(title: params[:title], cells: params_cells, size: params[:table_size])
       flash[:notice] = "IDが「#{@table.id}」の作業割当を更新しました"
       redirect_to :tables
     else
