@@ -20,7 +20,7 @@ javascript:
     const cell6 = row.insertCell(-1);
     const cell7 = row.insertCell(-1);
 
-    const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" />';
+    const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" class="insert_row" />';
     const delete_button = `<input type="button" value="行削除" onclick="deleteRow(this)" id="delete_button_${index + 1}" />`;
 
     const input_time = document.createElement("input");
@@ -76,6 +76,12 @@ javascript:
     const cells_length = document.getElementById('cells_length');
     cells_length.setAttribute("value", cells.length);
 
+    let insert_rows = document.getElementsByClassName( "insert_row" ) ;
+    insert_rows = [].slice.call( insert_rows ) ;
+    insert_rows.forEach((insert_row, index) => {
+        insert_row.setAttribute("id", "insert_row_" + index);
+    });
+
     const table = document.getElementById('sample1_table');
     const row_len = table.rows.length - 1;
     const table_size = document.getElementById('table_size');
@@ -99,46 +105,47 @@ javascript:
         th
           | 清掃業務
     tbody
-      tr
-        td
-          input type="button" value="下に1行挿入" onclick="insertRow(this)" id="insert_row"
-        td
-          input type="button" value="行削除" onclick="deleteRow(this)"
-        td
-          = f.text_field :cell0, class: "cell"
-        td
-          = f.text_field :cell1, list: "regular_work", class: "cell"
-          datalist#regular_work
-            - @regular_works.each do |regular_work|
-              |  <option value="
-              = regular_work.name
-              | 　(
-              = regular_work.time_required
-              | 分)">
-        td
-          = f.text_field :cell2, list: "deliver_work", class: "cell"
-          datalist#deliver_work
-            - @deliver_works.each do |deliver_work|
-              |  <option value="
-              = deliver_work.name
-              | 　(
-              = deliver_work.time_required
-              | 分)">
-        td
-          = f.text_field :cell3, list: "product_management_work", class: "cell"
-          datalist#product_management_work
-            - @product_management_works.each do |product_management_work|
-              |  <option value="
-              = product_management_work.name
-              | 　(
-              = product_management_work.time_required
-              | 分)">
-        td
-          = f.text_field :cell4, list: "cleaning_work", class: "cell"
-          datalist#cleaning_work
-            - @cleaning_works.each do |cleaning_work|
-              |  <option value="
-              = cleaning_work.name
-              | 　(
-              = cleaning_work.time_required
-              | 分)">
+      - table.size.times do |num|
+        tr
+          td
+            input type="button" value="下に1行挿入" onclick="insertRow(this)" id="insert_row_#{num}" class="insert_row"
+          td
+            input type="button" value="行削除" onclick="deleteRow(this)"
+          td
+            = f.text_field "cell#{num * 5 + 0}".to_sym, class: "cell", value: table.cells[num * 5 + 0]
+          td
+            = f.text_field "cell#{num * 5 + 1}".to_sym, list: "regular_work", class: "cell", value: table.cells[num * 5 + 1]
+            datalist#regular_work
+              - @regular_works.each do |regular_work|
+                |  <option value="
+                = regular_work.name
+                | 　(
+                = regular_work.time_required
+                | 分)">
+          td
+            = f.text_field "cell#{num * 5 + 2}".to_sym, list: "deliver_work", class: "cell", value: table.cells[num * 5 + 2]
+            datalist#deliver_work
+              - @deliver_works.each do |deliver_work|
+                |  <option value="
+                = deliver_work.name
+                | 　(
+                = deliver_work.time_required
+                | 分)">
+          td
+            = f.text_field "cell#{num * 5 + 3}".to_sym, list: "product_management_work", class: "cell", value: table.cells[num * 5 + 3]
+            datalist#product_management_work
+              - @product_management_works.each do |product_management_work|
+                |  <option value="
+                = product_management_work.name
+                | 　(
+                = product_management_work.time_required
+                | 分)">
+          td
+            = f.text_field "cell#{num * 5 + 4}".to_sym, list: "cleaning_work", class: "cell", value: table.cells[num * 5 + 4]
+            datalist#cleaning_work
+              - @cleaning_works.each do |cleaning_work|
+                |  <option value="
+                = cleaning_work.name
+                | 　(
+                = cleaning_work.time_required
+                | 分)">

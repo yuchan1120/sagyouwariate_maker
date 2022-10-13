@@ -21,7 +21,7 @@ RSpec.describe 'Tables', type: :system do
   scenario '削除した行は保存しない', js: true do
     visit new_table_path
 
-    find('#insert_row').click
+    find('#insert_row_0').click
     fill_in 'cell0', with: '１行目'
     fill_in 'cell5', with: '２行目'
     find('#delete_button_2').click
@@ -35,7 +35,7 @@ RSpec.describe 'Tables', type: :system do
   scenario '新規作成時に追加した行を編集することができる', js: true do
     visit new_table_path
 
-    find('#insert_row').click
+    find('#insert_row_0').click
     fill_in 'cell5', with: '２行目'
     find('#submit_save').click
     all('tbody tr')[0].click_link '編集'
@@ -49,7 +49,7 @@ RSpec.describe 'Tables', type: :system do
     find('#set_sample_data_tables').click
 
     expect(current_path).to eq new_table_path
-    expect(page).to have_xpath "//input[@value='サンプルデータ' and @name='table[title]']"
+    expect(page).to have_xpath "//input[@value='サンプルデータ' and @name='title']"
   end
 
   scenario 'user reads a table' do
@@ -72,7 +72,7 @@ RSpec.describe 'Tables', type: :system do
   scenario '編集画面で行の追加ができる', js: true do
     visit edit_table_path(@table)
 
-    find('#insert_row').click
+    find('#insert_row_0').click
     fill_in 'cell5', with: '２行目'
     find('#submit_save').click
     all('tbody tr')[0].click_link '詳細'
