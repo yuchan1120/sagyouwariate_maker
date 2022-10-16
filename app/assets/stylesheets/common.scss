@@ -520,6 +520,47 @@ table th {
   padding: 10px 20px;
 }
 
+.th_short {
+  width: 3%;
+  font-size: 0.7em;
+}
+
+.insert_row {
+  color: white;
+  background-color: #56bb9e;
+  text-decoration: none;
+  border: solid;
+  border-color: #4ca58c;
+  border-radius: 8px;
+  padding: 0.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.insert_row:hover {
+  opacity: 0.7;
+}
+
+.delete_row {
+  color: white;
+  background-color: #d95350;
+  text-decoration: none;
+  border: solid;
+  border-color: #b84543;
+  border-radius: 8px;
+  padding: 0.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete_row:hover {
+  opacity: 0.7;
+}
+
+.th_time {
+  width: 5%;
+}
+
 table td {
   background-color: #e0f0eb;
   padding: 10px 20px;

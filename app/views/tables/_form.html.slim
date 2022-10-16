@@ -20,32 +20,37 @@ javascript:
     const cell6 = row.insertCell(-1);
     const cell7 = row.insertCell(-1);
 
-    const add_button = '<input type="button" value="下に1行挿入" onclick="insertRow(this)" class="insert_row" />';
-    const delete_button = `<input type="button" value="行削除" onclick="deleteRow(this)" id="delete_button_${index + 1}" />`;
+    const add_button = '<input type="button" value="↪︎+" onclick="insertRow(this)" class="insert_row" title="下に1行挿入" />';
+    const delete_button = `<input type="button" value="×→" onclick="deleteRow(this)" id="delete_button_${index + 1}" class="delete_row" title="この行を削除" />`;
 
     const input_time = document.createElement("input");
     input_time.setAttribute("type", "text");
     input_time.setAttribute("class", "cell");
+    input_time.setAttribute("size", "5");
 
     const input_regular_work = document.createElement("input");
     input_regular_work.setAttribute("list", "regular_work");
     input_regular_work.setAttribute("type", "text");
     input_regular_work.setAttribute("class", "cell");
+    input_regular_work.setAttribute("size", "28");
 
     const input_deliver_work = document.createElement("input");
     input_deliver_work.setAttribute("list", "deliver_work");
     input_deliver_work.setAttribute("type", "text");
     input_deliver_work.setAttribute("class", "cell");
+    input_deliver_work.setAttribute("size", "28");
 
     const input_product_management_work = document.createElement("input");
     input_product_management_work.setAttribute("list", "product_management_work");
     input_product_management_work.setAttribute("type", "text");
     input_product_management_work.setAttribute("class", "cell");
+    input_product_management_work.setAttribute("size", "28");
 
     const input_cleaning_work = document.createElement("input");
     input_cleaning_work.setAttribute("list", "cleaning_work");
     input_cleaning_work.setAttribute("type", "text");
     input_cleaning_work.setAttribute("class", "cell");
+    input_cleaning_work.setAttribute("size", "28");
 
     cell1.innerHTML = add_button;
     cell2.innerHTML = delete_button;
@@ -92,9 +97,11 @@ javascript:
   table.sagyouwariate#sample1_table
     thead
       tr
-        th
-        th
-        th
+        th.th_short style="color:green"
+          | 行追加
+        th.th_short style="color:#b84543"
+          | 行削除
+        th.th_time
           | 時間
         th
           | 定時業務
@@ -108,13 +115,13 @@ javascript:
       - table.size.times do |num|
         tr
           td
-            input type="button" value="下に1行挿入" onclick="insertRow(this)" id="insert_row_#{num}" class="insert_row"
+            input type="button" value="↪︎+" onclick="insertRow(this)" id="insert_row_#{num}" class="insert_row" title="下に1行挿入"
           td
-            input type="button" value="行削除" onclick="deleteRow(this)"
+            input type="button" value="×→" onclick="deleteRow(this)" class="delete_row" title="この行を削除"
           td
-            = f.text_field "cell#{num * 5 + 0}".to_sym, class: "cell", value: table.cells[num * 5 + 0]
+            = f.text_field "cell#{num * 5 + 0}".to_sym, class: "cell", value: table.cells[num * 5 + 0], :size=>"5"
           td
-            = f.text_field "cell#{num * 5 + 1}".to_sym, list: "regular_work", class: "cell", value: table.cells[num * 5 + 1]
+            = f.text_field "cell#{num * 5 + 1}".to_sym, list: "regular_work", class: "cell", value: table.cells[num * 5 + 1], :size=>"28"
             datalist#regular_work
               - @regular_works.each do |regular_work|
                 |  <option value="
@@ -123,7 +130,7 @@ javascript:
                 = regular_work.time_required
                 | 分)">
           td
-            = f.text_field "cell#{num * 5 + 2}".to_sym, list: "deliver_work", class: "cell", value: table.cells[num * 5 + 2]
+            = f.text_field "cell#{num * 5 + 2}".to_sym, list: "deliver_work", class: "cell", value: table.cells[num * 5 + 2], :size=>"28"
             datalist#deliver_work
               - @deliver_works.each do |deliver_work|
                 |  <option value="
@@ -132,7 +139,7 @@ javascript:
                 = deliver_work.time_required
                 | 分)">
           td
-            = f.text_field "cell#{num * 5 + 3}".to_sym, list: "product_management_work", class: "cell", value: table.cells[num * 5 + 3]
+            = f.text_field "cell#{num * 5 + 3}".to_sym, list: "product_management_work", class: "cell", value: table.cells[num * 5 + 3], :size=>"28"
             datalist#product_management_work
               - @product_management_works.each do |product_management_work|
                 |  <option value="
@@ -141,7 +148,7 @@ javascript:
                 = product_management_work.time_required
                 | 分)">
           td
-            = f.text_field "cell#{num * 5 + 4}".to_sym, list: "cleaning_work", class: "cell", value: table.cells[num * 5 + 4]
+            = f.text_field "cell#{num * 5 + 4}".to_sym, list: "cleaning_work", class: "cell", value: table.cells[num * 5 + 4], :size=>"28"
             datalist#cleaning_work
               - @cleaning_works.each do |cleaning_work|
                 |  <option value="
