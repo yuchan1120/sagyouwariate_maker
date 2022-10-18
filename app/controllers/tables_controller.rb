@@ -53,6 +53,7 @@ class TablesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_each_works, only: %i[new edit]
   before_action :table_owner?, only: %i[show edit update destroy]
+  before_action :set_params_cells, only: %i[create update]
 
   def index
     @tables = Table.owner(current_user).order("#{sort_column} #{sort_direction}")
@@ -64,12 +65,7 @@ class TablesController < ApplicationController
   end
 
   def create
-    cells_length = params[:cells_length].to_i
-    params_cells = []
-    cells_length.times do |num|
-      params_cells.push(params["cell#{num}"])
-    end
-    @table = current_user.tables.new(title: params[:title], cells: params_cells, size: params[:table_size])
+    @table = current_user.tables.new(title: params[:title], cells: @params_cells, size: params[:table_size])
     if @table.save
       flash[:notice] = '作業割当を新規登録しました'
       redirect_to :tables
@@ -85,12 +81,7 @@ class TablesController < ApplicationController
   def edit; end
 
   def update
-    cells_length = params[:cells_length].to_i
-    params_cells = []
-    cells_length.times do |num|
-      params_cells.push(params["cell#{num}"])
-    end
-    if @table.update(title: params[:title], cells: params_cells, size: params[:table_size])
+    if @table.update(title: params[:title], cells: @params_cells, size: params[:table_size])
       flash[:notice] = "IDが「#{@table.id}」の作業割当を更新しました"
       redirect_to :tables
     else
@@ -137,15 +128,12 @@ class TablesController < ApplicationController
     redirect_to root_path unless @table.user_id == current_user.id
   end
 
-  def table_params
-    column = [:title]
-    96.times do |num|
-      column.push("a#{num + 1}".to_sym)
-      column.push("b#{num + 1}".to_sym)
-      column.push("c#{num + 1}".to_sym)
-      column.push("d#{num + 1}".to_sym)
+  def set_params_cells
+    cells_length = params[:cells_length].to_i
+    @params_cells = []
+    cells_length.times do |num|
+      @params_cells.push(params["cell#{num}"])
     end
-    params.require(:table).permit(column)
   end
 
   def sort_column
