@@ -43,7 +43,7 @@ window.insertRow = function (target) {
 
   const index = elements.indexOf( element ) ;
 
-  const table = document.getElementById('sample1_table');
+  const table = document.getElementById('sagyouwariate');
 
   const row = table.insertRow(index + 1);
 
@@ -122,7 +122,7 @@ window.setId = function () {
       insert_row.setAttribute("id", "insert_row_" + index);
   });
 
-  const table = document.getElementById('sample1_table');
+  const table = document.getElementById('sagyouwariate');
   const row_len = table.rows.length - 1;
   const table_size = document.getElementById('table_size');
   table_size.setAttribute("value", row_len);
