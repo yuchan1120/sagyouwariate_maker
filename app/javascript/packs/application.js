@@ -106,7 +106,7 @@ window.deleteRow = function (obj) {
   setId();
 }
 
-window.setId = function () {
+function setId() {
   let cells = document.getElementsByClassName( "cell" ) ;
   cells = [].slice.call( cells ) ;
   cells.forEach((cell, index) => {
