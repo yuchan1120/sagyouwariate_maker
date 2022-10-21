@@ -1,8 +1,12 @@
 .centered
-  table.sagyouwariate
+  table.sagyouwariate#sagyouwariate
     thead
       tr
-        th
+        th.th_short style="color:green"
+          | 行追加
+        th.th_short style="color:#b84543"
+          | 行削除
+        th.th_time
           | 時間
         th
           | 定時業務
@@ -13,43 +17,47 @@
         th
           | 清掃業務
     tbody
-      - 96.times do |num|
+      - table.size.times do |num|
         tr
           td
-            = render 'tables/row_time', num: num
+            input type="button" value="↪︎+" onclick="insertRow(this)" id="insert_row_#{num}" class="insert_row" title="下に1行挿入"
           td
-            = f.text_field "a#{num + 1}".to_sym, list: "regular_work", class: "text_field"
+            input type="button" value="×→" onclick="deleteRow(this)" class="delete_row" title="この行を削除"
+          td
+            = f.text_field "cell#{num * 5 + 0}".to_sym, class: "cell", value: table.cells[num * 5 + 0], :size=>"5"
+          td
+            = f.text_field "cell#{num * 5 + 1}".to_sym, list: "regular_work", class: "cell", value: table.cells[num * 5 + 1], :size=>"28"
             datalist#regular_work
               - @regular_works.each do |regular_work|
                 |  <option value="
                 = regular_work.name
                 | 　(
                 = regular_work.time_required
-                | 分)"> 
+                | 分)">
           td
-            = f.text_field "b#{num + 1}".to_sym, list: "deliver_work", class: "text_field"
+            = f.text_field "cell#{num * 5 + 2}".to_sym, list: "deliver_work", class: "cell", value: table.cells[num * 5 + 2], :size=>"28"
             datalist#deliver_work
               - @deliver_works.each do |deliver_work|
                 |  <option value="
                 = deliver_work.name
                 | 　(
                 = deliver_work.time_required
-                | 分)"> 
+                | 分)">
           td
-            = f.text_field "c#{num + 1}".to_sym, list: "product_management_work", class: "text_field"
+            = f.text_field "cell#{num * 5 + 3}".to_sym, list: "product_management_work", class: "cell", value: table.cells[num * 5 + 3], :size=>"28"
             datalist#product_management_work
               - @product_management_works.each do |product_management_work|
                 |  <option value="
                 = product_management_work.name
                 | 　(
                 = product_management_work.time_required
-                | 分)"> 
+                | 分)">
           td
-            = f.text_field "d#{num + 1}".to_sym, list: "cleaning_work", class: "text_field"
+            = f.text_field "cell#{num * 5 + 4}".to_sym, list: "cleaning_work", class: "cell", value: table.cells[num * 5 + 4], :size=>"28"
             datalist#cleaning_work
               - @cleaning_works.each do |cleaning_work|
                 |  <option value="
                 = cleaning_work.name
                 | 　(
                 = cleaning_work.time_required
-                | 分)"> 
+                | 分)">
